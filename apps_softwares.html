@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apps & Softwares</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS and any custom CSS -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header (copy your header/navbar from index.html) -->
+  <header>
+    <!-- ...navbar code here (same as index.html)... -->
+  </header>
+  <main class="container py-5">
+    <h1 class="mb-4 text-center">Apps & Softwares</h1>
+    <div class="row" id="apps-list">
+      <!-- Example card, repeat for each app -->
+      <div class="col-md-4 mb-4">
+        <div class="card app-card" data-app="app1">
+          <img src="assets/apps_softwares/app1-thumb.jpg" class="card-img-top" alt="App 1">
+          <div class="card-body">
+            <h5 class="card-title">App 1 Name</h5>
+            <p class="card-text">Short description of App 1.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Add more cards as needed -->
+    </div>
+    <!-- Overlay Modal for App Details -->
+    <div id="appModal" class="glightbox" style="display:none;">
+      <div class="glightbox-container">
+        <button type="button" class="close glightbox-close" id="closeAppModal">&times;</button>
+        <div id="appGallery" class="glightbox-gallery mb-3">
+          <!-- Gallery images will be injected here -->
+        </div>
+        <h3 id="appModalTitle"></h3>
+        <p id="appModalDescription"></p>
+      </div>
+    </div>
+  </main>
+  <!-- Scripts -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script>
+    // Define your apps data
+    const appsData = {
+      app1: {
+        name: 'App 1 Name',
+        images: [
+          'assets/apps_softwares/app1-1.jpg',
+          'assets/apps_softwares/app1-2.jpg'
+        ],
+        brief: 'Short description of App 1.',
+        extended: 'This is an extended description of App 1. Here you can give more details about the app, its features, etc.'
+      },
+      // Add more app data objects as needed
+      // app2: {...}
+    };
+
+    // Card click event
+    document.querySelectorAll('.app-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const appKey = this.getAttribute('data-app');
+        const app = appsData[appKey];
+        if (!app) return;
+        // Fill modal with app data
+        document.getElementById('appModalTitle').innerText = app.name;
+        document.getElementById('appModalDescription').innerText = app.extended;
+        // Gallery
+        const gallery = document.getElementById('appGallery');
+        gallery.innerHTML = '';
+        app.images.forEach((src, idx) => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.className = 'img-fluid mx-1';
+          img.style.maxHeight = '250px';
+          img.style.cursor = 'pointer';
+          img.onclick = () => {
+            // Open image in GLightbox or larger view if you want
+            window.open(src, '_blank');
+          };
+          gallery.appendChild(img);
+        });
+        // Show modal
+        document.getElementById('appModal').style.display = 'block';
+      });
+    });
+
+    // Close modal
+    document.getElementById('closeAppModal').onclick = function() {
+      document.getElementById('appModal').style.display = 'none';
+    };
+  </script>
+</body>
+</html>
