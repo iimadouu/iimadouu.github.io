@@ -4,15 +4,17 @@
   <meta charset="UTF-8">
   <title>Apps & Softwares</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap & Site CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
-  <!-- Custom Styles for Apps & Softwares -->
   <style>
+    .container {
+      padding-top: 10px;
+    }
     .apps-section-title {
       font-weight: 700;
       font-size: 2.5rem;
+      margin-top: 60px;
       margin-bottom: 2rem;
       text-align: center;
       color: #0078ff;
@@ -110,14 +112,24 @@
   </style>
 </head>
 <body>
-  <!-- Header (copy your header/navbar from index.html) -->
-  <header>
-    <!-- Navbar code (copy from your main index.html) -->
+  <header id="header" class="fixed-top" style="background: #000000; box-shadow: 0 2px 16px rgba(0,0,0,0.07); transition: background 0.3s;">
+      <div class="container d-flex align-items-center justify-content-between">
+          <h1 class="logo"><a href="index.html">IIMADOUU</a></h1>
+          <nav id="navbar" class="navbar">
+              <ul>
+                  <li><a class="nav-link scrollto" href="index.html#hero">Home</a></li>
+                  <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+                  <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
+                  <li><a class="nav-link active" href="apps_softwares.html">Apps & Softwares</a></li>
+                  <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+              </ul>
+              <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav>
+      </div>
   </header>
   <main class="container py-5">
     <h1 class="apps-section-title">Apps & Softwares</h1>
     <div class="row" id="apps-list">
-      <!-- Example app card (repeat for each app) -->
       <div class="col-md-4 mb-4">
         <div class="card app-card" data-app="app1">
           <img src="assets/apps_softwares/archiver 1.jpg" alt="App 1">
@@ -128,9 +140,27 @@ Your all-in-one solution for digital document management and retrieval.</p>
           </div>
         </div>
       </div>
-      <!-- Add more cards as needed -->
+      <div class="col-md-4 mb-4">
+        <div class="card app-card" data-app="app2">
+          <img src="assets/apps_softwares/stock 1.jpg" alt="Stock Manager">
+          <div class="card-body">
+            <h5 class="card-title">Stock Manager</h5>
+            <p class="card-text">Easily track, manage, and analyze your inventory with intuitive controls and insightful reports. 
+Perfect for businesses seeking efficient stock management and real-time updates.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card app-card" data-app="app3">
+          <img src="assets/apps_softwares/rh 1.jpg" alt="Human Resources Manager">
+          <div class="card-body">
+            <h5 class="card-title">Human Resources Manager</h5>
+            <p class="card-text">Manage employee records, attendance, payroll, and HR analytics in one place. 
+Empower your HR department with automation and insightful dashboards.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- Modal Overlay -->
     <div id="appModal">
       <div class="glightbox-container">
         <button type="button" class="close glightbox-close" id="closeAppModal">&times;</button>
@@ -140,10 +170,8 @@ Your all-in-one solution for digital document management and retrieval.</p>
       </div>
     </div>
   </main>
-  <!-- Scripts -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Apps data
     const appsData = {
       app1: {
         name: 'Archiver: Archive et Secritariat',
@@ -157,9 +185,34 @@ Your all-in-one solution for digital document management and retrieval.</p>
         brief: 'Effortlessly organize, archive, and search your documents with advanced OCR support.  Your all-in-one solution for digital document management and retrieval.',
         extended: 'Archiver is a powerful Flutter-based application designed to help individuals and organizations digitize, organize, and manage their documents with ease. Whether you are dealing with scanned paperwork, multi-page documents, or need to search through large archives, Archiver streamlines the entire process.'
       },
-      // Add more app objects as needed
+      app2: {
+        name: 'Stock Manager',
+        images: [
+          'assets/apps_softwares/stock 1.jpg',
+          'assets/apps_softwares/stock 2.jpg',
+          'assets/apps_softwares/stock 3.jpg',
+          'assets/apps_softwares/stock 4.jpg',
+          'assets/apps_softwares/stock 5.jpg',
+        ],
+        brief: 'Easily track, manage, and analyze your inventory with intuitive controls and insightful reports. Perfect for businesses seeking efficient stock management and real-time updates.',
+        extended: 'Stock Manager is a comprehensive inventory management solution designed for businesses of all sizes. Effortlessly monitor stock levels, receive low-stock alerts, and generate detailed reports. With a user-friendly interface and real-time updates, Stock Manager helps you optimize your inventory, reduce waste, and make informed decisions for your business.'
+      },
+      app3: {
+        name: 'Human Resources Manager',
+        images: [
+          'assets/apps_softwares/rh 1.jpg',
+          'assets/apps_softwares/rh 2.jpg',
+          'assets/apps_softwares/rh 3.jpg',
+          'assets/apps_softwares/rh 4.jpg',
+          'assets/apps_softwares/rh 5.jpg',
+          'assets/apps_softwares/rh 6.jpg',
+          'assets/apps_softwares/rh 7.jpg',
+          'assets/apps_softwares/rh 8.jpg',
+        ],
+        brief: 'Manage employee records, attendance, payroll, and HR analytics in one place. Empower your HR department with automation and insightful dashboards.',
+        extended: 'Human Resources Manager is an all-in-one HR solution for modern organizations. Easily manage employee data, track attendance, automate payroll, and generate HR analytics. With support for multiple users and secure data handling, this software streamlines HR operations and empowers your team with actionable insights.'
+      }
     };
-    // Modal logic
     document.querySelectorAll('.app-card').forEach(card => {
       card.addEventListener('click', function() {
         const appKey = this.getAttribute('data-app');
@@ -167,7 +220,6 @@ Your all-in-one solution for digital document management and retrieval.</p>
         if (!app) return;
         document.getElementById('appModalTitle').innerText = app.name;
         document.getElementById('appModalDescription').innerText = app.extended;
-        // Gallery
         const gallery = document.getElementById('appGallery');
         gallery.innerHTML = '';
         app.images.forEach((src, idx) => {
@@ -183,7 +235,6 @@ Your all-in-one solution for digital document management and retrieval.</p>
     document.getElementById('closeAppModal').onclick = function() {
       document.getElementById('appModal').classList.remove('active');
     };
-    // Close modal on outside click
     document.getElementById('appModal').addEventListener('click', function(e) {
       if(e.target === this) this.classList.remove('active');
     });
