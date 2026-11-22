@@ -759,16 +759,17 @@
 
       /* camera */
       var cam = smoothKeys(camPath, p);
-      camera.position.x = cam.x * spread + camX;
-      camera.position.y = cam.y + camY;
+      camera.position.x = cam.x * spread + camX + Math.sin(t * 0.21) * 0.03;
+      camera.position.y = cam.y + camY + Math.cos(t * 0.17) * 0.02;
       camera.position.z = cam.z;
       camera.lookAt(0, 0.05, 0);
 
       /* planet journey + gentle roll */
+      var narrow = camera.aspect < 1.06;
       var pl = smoothKeys(planetPath, p);
-      planetGroup.position.set(pl.x * spread, pl.y, pl.z);
+      planetGroup.position.set(pl.x * spread, pl.y - (narrow ? 0.45 : 0), pl.z);
       planetGroup.rotation.z = Math.sin(t * 0.12) * 0.02;
-      planetGroup.scale.setScalar(1 - 0.1 * ease(seg(p, 0.6, 1)));
+      planetGroup.scale.setScalar((1 - 0.1 * ease(seg(p, 0.6, 1))) * (narrow ? 0.9 : 1));
 
       surface.rotation.y = t * 0.045;
       surface.material.uniforms.uTime.value = t;
@@ -798,10 +799,10 @@
       worldB.children[0].material.uniforms.uTime.value = t;
 
       /* black hole final approach */
-      var hIn = ease(seg(p, 0.64, 1));
-      hole.position.y = lerp(-10, -0.55, hIn);
-      hole.position.x = lerp(-2.6, -0.7, hIn) * (spread < 0.78 ? 0.55 : 1);
-      hole.scale.setScalar(lerp(0.55, 1.5, hIn));
+      var hIn = ease(seg(p, 0.56, 0.96));
+      hole.position.y = lerp(-9.5, -1.45, hIn);
+      hole.position.x = lerp(-2.6, -0.2, hIn) * (spread < 0.78 ? 0.55 : 1);
+      hole.scale.setScalar(lerp(0.5, 1.2, hIn));
       hole.rotation.z = t * 0.05;
       accretion.rotation.z = 0.1 + t * 0.28;
       accretionMat.uniforms.uTime.value = t;

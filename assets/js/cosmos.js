@@ -485,10 +485,16 @@
         }
 
         if (heroCopy && !reduce) {
+          /* fade only as the hero actually leaves the viewport, not with
+             whole-document progress (which dimmed it far too early) */
+          var out = Math.min(1, window.scrollY / (window.innerHeight * 0.85));
           heroCopy.style.transform =
-            "translateY(" + (-p * 170).toFixed(1) + "px) scale(" + (1 - p * 0.16).toFixed(3) + ")";
-          heroCopy.style.opacity = Math.max(0, 1 - p * 2.4).toFixed(2);
+            "translateY(" + (-out * 120).toFixed(1) + "px) scale(" + (1 - out * 0.12).toFixed(3) + ")";
+          heroCopy.style.opacity = Math.max(0, 1 - out * 1.35).toFixed(2);
         }
+
+        var orbit = document.querySelector("[data-hud-orbit]");
+        if (orbit) orbit.setAttribute("transform", "rotate(" + (p * 360).toFixed(1) + " 30 30)");
       };
 
       var request = function () {

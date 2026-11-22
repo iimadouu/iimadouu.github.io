@@ -1044,7 +1044,7 @@ body.cursor-hot .cursor-ring{
   pointer-events:none;
   opacity:0;
   background:
-    radial-gradient(circle at 50% 50%,rgba(56,225,240,.42),rgba(124,58,237,.42) 26%,rgba(5,4,15,.99) 58%);
+    radial-gradient(circle at 50% 50%,rgba(56,225,240,.30),rgba(124,58,237,.34) 26%,rgba(5,4,15,.99) 58%);
   transition:opacity .3s ease;
 }
 .warp::before{
@@ -1136,6 +1136,18 @@ body.has-3d .hero .stage{opacity:0;pointer-events:none;transition:opacity .9s ea
 }
 .hero-copy{will-change:transform,opacity}
 
+/* keeps hero type readable wherever the 3D world drifts behind it */
+.hero-copy{position:relative}
+.hero-copy::before{
+  content:"";
+  position:absolute;
+  inset:-10% -16%;
+  z-index:-1;
+  pointer-events:none;
+  background:radial-gradient(62% 62% at 34% 46%, rgba(5,4,15,.9), rgba(5,4,15,.62) 54%, rgba(5,4,15,0) 80%);
+  filter:blur(14px);
+}
+
 /* ---------------- cinematic finish ---------------- */
 body::after{
   content:"";
@@ -1147,7 +1159,7 @@ body::after{
     radial-gradient(120% 95% at 50% 45%, rgba(0,0,0,0) 52%, rgba(3,2,10,.42) 100%),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.42'/></svg>");
   background-size:cover, 140px 140px;
-  opacity:.28;
+  opacity:.2;
 }
 
 html{scrollbar-color:#6b5ba8 #070614;scrollbar-width:thin}
@@ -1182,6 +1194,12 @@ html{scrollbar-color:#6b5ba8 #070614;scrollbar-width:thin}
 .hud b{color:var(--ion);font-weight:400;letter-spacing:.14em}
 .hud .bar{display:block;width:120px;height:1px;background:rgba(255,255,255,.14);overflow:hidden}
 .hud .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ion),var(--plasma));box-shadow:0 0 8px rgba(56,225,240,.75)}
+.hud .orbit-row{align-items:center;gap:12px;margin-top:4px}
+.hud svg{overflow:visible}
+.hud .orbit-path{fill:none;stroke:rgba(163,152,255,.3);stroke-width:1}
+.hud .orbit-path.inner{stroke:rgba(163,152,255,.16)}
+.hud .orbit-core{fill:var(--solar);filter:drop-shadow(0 0 5px rgba(251,191,36,.9))}
+.hud .orbit-dot{fill:var(--ion);filter:drop-shadow(0 0 7px rgba(56,225,240,.95))}
 
 /* ---------------- boot sequence ---------------- */
 .boot{

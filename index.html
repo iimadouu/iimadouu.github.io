@@ -620,6 +620,15 @@
     <div class="row">sector <b data-hud-sector>01 &middot; origin</b></div>
     <div class="row">alt <b data-hud-alt>00000 km</b></div>
     <div class="row">progress <span class="bar"><i data-hud-progress></i></span></div>
+    <div class="row orbit-row">
+      <svg viewBox="0 0 60 60" width="62" height="62" aria-hidden="true">
+        <circle class="orbit-path" cx="30" cy="30" r="22"></circle>
+        <circle class="orbit-path inner" cx="30" cy="30" r="13"></circle>
+        <circle class="orbit-core" cx="30" cy="30" r="2.4"></circle>
+        <g data-hud-orbit transform="rotate(0 30 30)"><circle class="orbit-dot" cx="30" cy="8" r="2.6"></circle></g>
+      </svg>
+      <span>orbit</span>
+    </div>
   </div>
 
   <script src="assets/js/cosmos.js"></script>
