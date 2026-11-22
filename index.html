@@ -1,363 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Imad eddine Aris Portfolio</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+  <title>Imad Eddine Aris — Designer &amp; Developer | IIMADOUU</title>
+  <meta name="description" content="Portfolio of Imad Eddine Aris (IIMADOUU) — web designer, full stack developer and API developer from Blida, Algeria. Designing and building digital worlds.">
+  <meta name="keywords" content="WEB DESIGNER, WEB DEVELOPER, API DEVELOPER, BACKEND DEVELOPER, FRONTEND DEVELOPER, website creator, creation de site web en algerie, web site creator in algeria, IIMADOUU">
+  <meta name="author" content="Imad Eddine Aris">
+  <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="lQYAJsVnEP5FW80ZGC74-oeErH_bRmmfBaNcZCeZhbY">
 
-    <meta name="title" content="IIMADOU ">
-    <meta name="description" content="this website is a portofolio of imad eddine aris a WEB DESIGNER, WEB DEVELOPER, API DEVELOPER, BACKEND DEVELOPER, FRONTEND DEVELOPER">
-    <meta name="keywords" content="WEB DESIGNER, WEB DEVELOPER, API DEVELOPER, BACKEND DEVELOPER, FRONTEND DEVELOPER, website creator, creation de siteweb en algerie, web site creator in algeria">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="language" content="English">
-    <meta name="revisit-after" content="1 days">
-    <meta name="author" content="Imad Eddine Aris">
-    <meta name="google-site-verification" content="lQYAJsVnEP5FW80ZGC74-oeErH_bRmmfBaNcZCeZhbY" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Imad Eddine Aris — Designer &amp; Developer">
+  <meta property="og:description" content="Web design, full stack development and APIs from Blida, Algeria. Let's build something out of this world.">
 
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-
-    <link href="assets/css/style.css" rel="stylesheet">
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
+  <link href="assets/css/cosmos.css" rel="stylesheet">
 </head>
 
 <body>
 
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="nebula n1" aria-hidden="true"></div>
+  <div class="nebula n2" aria-hidden="true"></div>
+  <div class="nebula n3" aria-hidden="true"></div>
 
-    <header id="header" class="fixed-top">
-        <div class="container d-flex align-items-center justify-content-between">
+  <!-- ── HEADER ───────────────────────────────────────────── -->
+  <header class="site-head">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="index.html">
+        <span class="brand-orb" aria-hidden="true"></span>
+        <span class="brand-text">IIMADOUU<span>.</span></span>
+      </a>
 
-            <h1 class="logo"><a href="index.html">IIMADOUU</a></h1>
+      <ul class="nav-links">
+        <li><a href="#top" class="is-active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="apps_softwares.html">Apps</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link" href="apps_softwares.html">Apps & Softwares</a></li>
-                    <li><a class="nav-link" href="pricing.html">Pricing</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav>
+      <div class="nav-cta">
+        <a class="btn btn--ghost" href="mailto:imadedar98@gmail.com">
+          Start a mission
+          <span class="arw" aria-hidden="true">↗</span>
+        </a>
+        <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
 
+  <div class="menu" id="menu" aria-hidden="true">
+    <a href="#top"><em>00</em> Home</a>
+    <a href="#about"><em>01</em> About</a>
+    <a href="#services"><em>02</em> Services</a>
+    <a href="apps_softwares.html"><em>03</em> Apps &amp; Softwares</a>
+    <a href="pricing.html"><em>04</em> Pricing</a>
+    <a href="#contact"><em>05</em> Contact</a>
+  </div>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
+
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Available for new missions · Chebli, Blida</p>
+
+          <h1>
+            <span class="line"><span>Imad Eddine</span></span>
+            <span class="line"><span class="grad">Aris.</span></span>
+            <span class="line"><span>Designer of worlds.</span></span>
+          </h1>
+
+          <div class="rotator">
+            <span class="slash">//</span>
+            <span class="rot" data-rotate="Web Designer,Full Stack Developer,API Architect,UI/UX Thinker,Freelancer">Web Designer</span>
+            <span class="caret" aria-hidden="true"></span>
+          </div>
+
+          <p class="hero-sub">
+            I build digital universes — interfaces that feel alive, backends that hold them
+            together, and the small details in between that make people stay.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#services">
+              Explore my universe
+              <span class="arw" aria-hidden="true">↙</span>
+            </a>
+            <a class="btn btn--ghost" href="pricing.html">
+              View pricing
+              <span class="arw" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div>Based in<b>Chebli · Blida, Algeria</b></div>
+            <div>Focus<b>Design × Code × APIs</b></div>
+            <div>Status<b style="color:var(--mint)">Open to work</b></div>
+          </div>
         </div>
-    </header>
 
-    <div id="hero" class="hero route bg-image" style="background-image: url(assets/img/dev.jpg)">
-        <div class="overlay-itro"></div>
-        <div class="hero-content display-table">
-            <div class="table-cell">
-                <div class="container">
-
-                    <h1 class="hero-title mb-4">I am Imad ED. Aris</h1>
-                    <p class="hero-subtitle"><span class="typed" data-typed-items="Designer, Developer, Freelancer"></span></p>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="pricing.html" style="
-                            display: inline-flex; align-items: center; gap: 8px;
-                            background: rgba(255,255,255,0.12);
-                            border: 1px solid rgba(255,255,255,0.3);
-                            color: #fff; text-decoration: none;
-                            padding: 10px 24px; border-radius: 100px;
-                            font-size: 0.9rem; font-weight: 600;
-                            backdrop-filter: blur(8px);
-                            transition: background .2s, border-color .2s;
-                        "
-                        onmouseover="this.style.background='rgba(255,255,255,0.22)'"
-                        onmouseout="this.style.background='rgba(255,255,255,0.12)'">
-                            <i class="bi bi-tag-fill"></i> View Pricing
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <!-- planet system -->
+        <div class="stage" aria-hidden="true">
+          <div class="sys-glow"></div>
+          <div class="rings">
+            <i></i><i></i><i></i><i></i>
+            <span class="disc"></span>
+          </div>
+          <div class="planet"></div>
+          <div class="moon"><i></i></div>
+          <div class="moon m2"><i></i></div>
+          <div class="moon m3"><i></i></div>
+          <span class="stage-label l1">object iimadouu-01</span>
+          <span class="stage-label l2">orbit stable</span>
         </div>
+
+      </div>
     </div>
+    <div class="scroll-cue" aria-hidden="true"><i></i>scroll</div>
+  </section>
 
-    <main id="main">
+  <!-- ── MARQUEE ──────────────────────────────────────────── -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Web Design <b>✦</b> Full Stack <b>✦</b> Python <b>✦</b> JavaScript <b>✦</b> APIs <b>✦</b> UI / UX <b>✦</b> Flutter <b>✦</b> Backend <b>✦</b></span>
+      <span>Web Design <b>✦</b> Full Stack <b>✦</b> Python <b>✦</b> JavaScript <b>✦</b> APIs <b>✦</b> UI / UX <b>✦</b> Flutter <b>✦</b> Backend <b>✦</b></span>
+    </div>
+  </div>
 
+  <main>
 
-        <section id="about" class="about-mf sect-pt4 route">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="box-shadow-full">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-md-5">
-                                            <!--<div class="about-img">
-                        <img src="assets/img/im.jpg" class="img-fluid rounded b-shadow-a" alt="" style="height: 150px;" oncontextmenu="return false;">
-                      </div>-->
-                                        </div>
-                                        <div class="col-sm-6 col-md-7">
-                                            <div class="about-info">
-                                                <p><span class="title-s">Name: </span> <span>Imad Eddine Aris</span></p>
-                                                <p><span class="title-s">Profile: </span> <span>full stack developer/ designer</span></p>
-                                                <p><span class="title-s">Email: </span> <span>imadedar98@gmail.com</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="skill-mf">
-                                        <p class="title-s">Skill</p>
-                                        <span>HTML</span> <span class="pull-right">85%</span>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span>CSS</span> <span class="pull-right">70%</span>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span>PYTHON</span> <span class="pull-right">90%</span>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span>JAVASCRIPT</span> <span class="pull-right">70%</span>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span>WEB DESIGN</span> <span class="pull-right">80%</span>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="about-me pt-4 pt-md-0">
-                                        <div class="title-box-2">
-                                            <h5 class="title-left">
-                                                About me
-                                            </h5>
-                                        </div>
-                                        <p class="lead">
-                                            Hello,
-                                            This is Imad Ed. Aris, 25 years old from Algeria, Blida, Chebli. I am a Full Stack developer.
-                                        </p>
-                                        <p class="lead">
-                                            I specialize in multiple programming languages such as Python and Javascript.
-                                            Additionally, i specialize in web dev languages such as HTML and CSS.
-                                            I also specialize in web designing, UI/UX.
-                                        </p>
-                                        <p class="lead">
-                                            Also i specialize in Backend Development, such as developing web apps, using framworks such as
-                                            Express or Flask. Also API's Development.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- ── ABOUT ──────────────────────────────────────────── -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="about-grid">
+
+          <div class="about-body reveal">
+            <p class="eyebrow">01 — Origin signal</p>
+            <h2 class="h2">From Blida,<br><span class="grad">into orbit.</span></h2>
+
+            <p>
+              Hello — I'm <strong>Imad Eddine Aris</strong>, 25 years old, from Chebli in Blida, Algeria.
+              I'm a <strong>full stack developer</strong> who cares as much about how a thing looks as how it works.
+            </p>
+            <p>
+              I work across <strong>Python and JavaScript</strong>, and in the languages of the web —
+              HTML and CSS — with a real obsession for web design and UI/UX. Good interfaces should feel
+              inevitable: nothing extra, nothing missing.
+            </p>
+            <p>
+              On the other side of the screen I build <strong>backends and APIs</strong> with frameworks like
+              Express and Flask, and ship applications with Flutter for mobile and desktop.
+              One person, the whole stack.
+            </p>
+
+            <div class="facts">
+              <div><b>25</b><span>Years in orbit</span></div>
+              <div><b>6</b><span>Disciplines</span></div>
+              <div><b>∞</b><span>Curiosity</span></div>
             </div>
-        </section>
 
+            <p class="signature">— Imad Eddine Aris · IIMADOUU</p>
+          </div>
 
-        <section id="services" class="services-mf pt-5 route">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="title-box text-center">
-                            <h3 class="title-a">
-                                Services
-                            </h3>
-                            <p class="subtitle-a">
-                                Take a tour in my services.
-                            </p>
-                            <div class="line-mf"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="service-box">
-                            <div class="service-ico">
-                                <span class="ico-circle"><i class="bi bi-palette"></i></span>
-                            </div>
-                            <div class="service-content">
-                                <h2 class="s-title">Web Design</h2>
-                                <p class="s-description text-center">
-                                    Modern and Sophisticated web Designs.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="service-box">
-                            <div class="service-ico">
-                                <span class="ico-circle"><i class="bi bi-code-slash"></i></span>
-                            </div>
-                            <div class="service-content">
-                                <h2 class="s-title">Web Development</h2>
-                                <p class="s-description text-center">
-                                    Crafting seamless web experiences with modern technologies and innovation.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="service-box">
-                            <div class="service-ico">
-                                <span class="ico-circle"><i class="bi bi-phone-flip"></i></span>
-                            </div>
-                            <div class="service-content">
-                                <h2 class="s-title">Responsive Design</h2>
-                                <p class="s-description text-center">
-                                    Crafting adaptable layouts for diverse screen sizes.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="service-box">
-                            <div class="service-ico">
-                                <span class="ico-circle"><i class="bi bi-brightness-high"></i></span>
-                            </div>
-                            <div class="service-content">
-                                <h2 class="s-title">Backend & API</h2>
-                                <p class="s-description text-center">
-                                    Power your app with robust backend and versatile API.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="service-box">
-                            <div class="service-ico">
-                                <span class="ico-circle"><i class="bi bi-phone"></i></span>
-                            </div>
-                            <div class="service-content">
-                                <h2 class="s-title">Apps & Softwares</h2>
-                                <p class="s-description text-center">
-                                    We create custom mobile applications and Windows desktop apps tailored for your needs.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="service-box" style="cursor:pointer;" onclick="window.location.href='pricing.html'">
-                            <div class="service-ico">
-                                <span class="ico-circle"><i class="bi bi-tag"></i></span>
-                            </div>
-                            <div class="service-content">
-                                <h2 class="s-title">Pricing</h2>
-                                <p class="s-description text-center">
-                                    Transparent rates for every project. View full pricing in EN, FR & AR.
-                                </p>
-                            </div>
-                        </div>
-                    </div>           
-                </div>
+          <div class="panel reveal" style="--d:120ms">
+            <div class="panel-head">
+              <span>Flight profile</span>
+              <b>● calibrated</b>
             </div>
-        </section>
 
-        <section id="contact" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(assets/img/overlay-bg.jpg)">
-            <div class="overlay-mf"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="contact-mf">
-                            <div id="contact" class="box-shadow-full">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="title-box-2 pt-4 pt-md-0">
-                                            <h5 class="title-left">
-                                                Get in Touch
-                                            </h5>
-                                        </div>
-                                        <div class="more-info">
-                                            <p class="lead">
-                                                What a website Designer? want a Backend Developer? want to get in touch?
-                                                Contact me through the form below or use any of the contact info down below.
-                                            </p>
-                                            <ul class="list-ico">
-                                                <li><span class="bi bi-geo-alt"></span> Chebli, Blida</li>
-                                                <li><span class="bi bi-phone"></span> +213657496125</li>
-                                                <li><span class="bi bi-envelope"></span> imadedar98@gmail.com</li>
-                                            </ul>
-                                        </div>
-                                        <div class="socials">
-                                            <ul>
-                                                <li><a href="https://www.facebook.com/iimadouu"><span class="ico-circle"><i class="bi bi-facebook"></i></span></a></li>
-                                                <li><a href="https://www.instagram.com/iimadouu/"><span class="ico-circle"><i class="bi bi-instagram"></i></span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="gauge">
+              <div class="gauge-head"><span>Python</span><em>90%</em></div>
+              <div class="gauge-track"><div class="gauge-fill" style="--v:.90"></div></div>
             </div>
-        </section>
-
-    </main>
-
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="copyright-box">
-                        <p class="copyright">&copy; Copyright <strong>IIMADOUU</strong>. All Rights Reserved</p>
-                        <div class="credits">
-                            Designed by <a href="mailto:imadedar98@gmail.com">Imad.EDAR</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="gauge">
+              <div class="gauge-head"><span>HTML</span><em>85%</em></div>
+              <div class="gauge-track"><div class="gauge-fill" style="--v:.85"></div></div>
             </div>
+            <div class="gauge">
+              <div class="gauge-head"><span>Web design</span><em>85%</em></div>
+              <div class="gauge-track"><div class="gauge-fill" style="--v:.85"></div></div>
+            </div>
+            <div class="gauge">
+              <div class="gauge-head"><span>CSS</span><em>75%</em></div>
+              <div class="gauge-track"><div class="gauge-fill" style="--v:.75"></div></div>
+            </div>
+            <div class="gauge">
+              <div class="gauge-head"><span>JavaScript</span><em>75%</em></div>
+              <div class="gauge-track"><div class="gauge-fill" style="--v:.75"></div></div>
+            </div>
+
+            <div class="panel-head" style="margin:28px 0 0;border-top:1px solid var(--line);padding-top:22px">
+              <span>Stack</span>
+              <span style="color:var(--muted);letter-spacing:.08em">Express · Flask · Flutter · Firebase</span>
+            </div>
+          </div>
+
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- ── SERVICES ───────────────────────────────────────── -->
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow">02 — Capabilities</p>
+          <h2 class="h2">What I can build<br><span class="grad">for you.</span></h2>
+          <p class="lead">Six ways to launch. Pick a direction and I'll handle the rest of the flight.</p>
+        </div>
 
+        <div class="cards">
 
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/typed.js/typed.umd.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+          <a class="card reveal" data-glow href="#contact" style="--d:0ms">
+            <span class="card-num">01</span>
+            <span class="card-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="3.5"/></svg>
+            </span>
+            <h3>Web design</h3>
+            <p>Modern, sophisticated interfaces with a real point of view — layout, type, motion and detail.</p>
+            <span class="card-go">Start a project <span aria-hidden="true">→</span></span>
+          </a>
 
+          <a class="card reveal" data-glow href="#contact" style="--d:60ms">
+            <span class="card-num">02</span>
+            <span class="card-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 6 3 12l6 6M15 6l6 6-6 6"/></svg>
+            </span>
+            <h3>Web development</h3>
+            <p>Seamless, fast experiences built with modern technologies — from landing page to platform.</p>
+            <span class="card-go">Start a project <span aria-hidden="true">→</span></span>
+          </a>
 
-    <script src="assets/js/main.js"></script>
+          <a class="card reveal" data-glow href="#contact" style="--d:120ms">
+            <span class="card-num">03</span>
+            <span class="card-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M10.5 18.5h3"/></svg>
+            </span>
+            <h3>Responsive design</h3>
+            <p>Adaptable layouts that hold their shape from a 4-inch screen to a wide desktop monitor.</p>
+            <span class="card-go">Start a project <span aria-hidden="true">→</span></span>
+          </a>
 
-    <script>
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+          <a class="card reveal" data-glow href="#contact" style="--d:0ms">
+            <span class="card-num">04</span>
+            <span class="card-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>
+            </span>
+            <h3>Backend &amp; APIs</h3>
+            <p>Power your product with a robust backend and a versatile, well-documented API.</p>
+            <span class="card-go">Start a project <span aria-hidden="true">→</span></span>
+          </a>
 
+          <a class="card reveal" data-glow href="apps_softwares.html" style="--d:60ms">
+            <span class="card-num">05</span>
+            <span class="card-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 9h4M7 12h7"/></svg>
+            </span>
+            <h3>Apps &amp; softwares</h3>
+            <p>Custom mobile applications and Windows desktop software, built around how you actually work.</p>
+            <span class="card-go">See the fleet <span aria-hidden="true">→</span></span>
+          </a>
 
-            var formData = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                subject: document.getElementById("subject").value,
-                message: document.getElementById("message").value
-            };
+          <a class="card reveal" data-glow href="pricing.html" style="--d:120ms">
+            <span class="card-num">06</span>
+            <span class="card-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L22 9.6l-5.6 4.6L18 22l-6-4-6 4 1.6-7.8L2 9.6l7.4-.7z"/></svg>
+            </span>
+            <h3>Pricing</h3>
+            <p>Transparent rates for every project size — full pricing in English, French and Arabic.</p>
+            <span class="card-go">Open the chart <span aria-hidden="true">→</span></span>
+          </a>
 
-            emailjs.send("service_po7lyi9", "template_9rjkn74", formData)
-                .then(function(response) {
-                    alert("Your message has been sent. Thank you!");
-                    document.getElementById("contactForm").reset();
-                }, function(error) {
-                    console.error("Error sending email:", error);
-                    alert("An error occurred while sending your message. Please try again later.");
-                });
-        });
-    </script>
+        </div>
+      </div>
+    </section>
 
+    <!-- ── SHOWCASE LINK ──────────────────────────────────── -->
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="panel reveal" style="display:grid;gap:22px;padding:clamp(26px,4vw,44px)">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px">
+            <div>
+              <p class="eyebrow">03 — Launched systems</p>
+              <h2 class="h2" style="margin-bottom:8px">Software already<br><span class="grad">in orbit.</span></h2>
+              <p class="lead" style="margin:0">Archiver, Stock Manager, HR Manager — real tools running in real businesses.</p>
+            </div>
+            <a class="btn btn--ghost" href="apps_softwares.html">Enter the hangar <span class="arw" aria-hidden="true">↗</span></a>
+          </div>
+          <div class="facts" style="margin:0">
+            <div><b style="font-size:1rem;letter-spacing:0">Archiver</b><span>Document archive · OCR</span></div>
+            <div><b style="font-size:1rem;letter-spacing:0">Stock Manager</b><span>Inventory · Reports</span></div>
+            <div><b style="font-size:1rem;letter-spacing:0">HR Manager</b><span>People · Payroll</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ── CONTACT ────────────────────────────────────────── -->
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="contact-grid">
+
+          <div class="reveal">
+            <p class="eyebrow">04 — Open a channel</p>
+            <h2 class="h2">Let's build<br><span class="grad">something stellar.</span></h2>
+            <p class="lead">Need a website, a backend, an app — or all three? Tell me what you have in mind and we'll find the trajectory.</p>
+
+            <ul class="contact-list">
+              <li>
+                <a href="mailto:imadedar98@gmail.com">
+                  <span><span class="k">Email</span><span class="v">imadedar98@gmail.com</span></span>
+                  <span class="go" aria-hidden="true">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="tel:+213657496125">
+                  <span><span class="k">Phone</span><span class="v">+213 657 496 125</span></span>
+                  <span class="go" aria-hidden="true">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://maps.google.com/?q=Chebli,Blida,Algeria" target="_blank" rel="noopener">
+                  <span><span class="k">Base</span><span class="v">Chebli, Blida — Algeria</span></span>
+                  <span class="go" aria-hidden="true">↗</span>
+                </a>
+              </li>
+            </ul>
+
+            <div class="socials">
+              <a href="https://www.facebook.com/iimadouu" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.55-1.5H16.7V4.6c-.3-.04-1.3-.13-2.46-.13-2.43 0-4.09 1.48-4.09 4.2v2.23H7.4V14h2.75v8h3.35z"/></svg>
+                Facebook
+              </a>
+              <a href="https://www.instagram.com/iimadouu/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.96.24 2.65.51.71.28 1.31.65 1.9 1.24.6.6.96 1.19 1.25 1.9.27.69.46 1.48.51 2.65.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.96-.51 2.65-.29.71-.65 1.3-1.25 1.9-.59.59-1.19.96-1.9 1.24-.69.27-1.48.46-2.65.51-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.96-.24-2.65-.51a5.26 5.26 0 0 1-1.9-1.24c-.6-.6-.96-1.19-1.25-1.9-.27-.69-.46-1.48-.51-2.65C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.24-1.96.51-2.65.29-.71.65-1.3 1.25-1.9.59-.59 1.19-.96 1.9-1.24.69-.27 1.48-.46 2.65-.51C9.85 2.21 10.23 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.73.07-.9.04-1.39.19-1.72.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.33-.28.82-.32 1.72C3.42 9.09 3.41 9.45 3.41 12s.01 2.91.07 4.14c.04.9.19 1.39.32 1.72.17.43.37.74.69 1.06.32.32.63.52 1.06.69.33.13.82.28 1.72.32 1.23.06 1.59.07 4.73.07s3.5-.01 4.73-.07c.9-.04 1.39-.19 1.72-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.33.28-.82.32-1.72.06-1.23.07-1.59.07-4.14s-.01-2.91-.07-4.14c-.04-.9-.19-1.39-.32-1.72a2.86 2.86 0 0 0-.69-1.06 2.86 2.86 0 0 0-1.06-.69c-.33-.13-.82-.28-1.72-.32C15.5 4.01 15.14 4 12 4zm0 3.06a4.94 4.94 0 1 1 0 9.88 4.94 4.94 0 0 1 0-9.88zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28zm5.13-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg>
+                Instagram
+              </a>
+              <a href="mailto:imadedar98@gmail.com">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 8.2 8-5.2H4l8 5.2z"/></svg>
+                Email
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-badge reveal" style="--d:140ms">
+            <div class="orb" aria-hidden="true">✦</div>
+            <h3 class="h3" style="font-size:1.15rem">Signal received</h3>
+            <p>I usually reply within a day. Tell me about the project, the timeline, and what success looks like — even a rough idea is enough to start.</p>
+            <a class="btn btn--primary" href="mailto:imadedar98@gmail.com?subject=New%20project%20inquiry">Send a transmission</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ───────────────────────────────────────────── -->
+  <footer class="site-foot">
+    <div class="wrap">
+      <p class="foot-word" aria-hidden="true">IIMADOUU</p>
+      <div class="foot-row">
+        <span>© <span data-year>2026</span> IIMADOUU · All rights reserved</span>
+        <span>Designed &amp; built by <a href="mailto:imadedar98@gmail.com">Imad.EDAR</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="rail" aria-label="Section navigation">
+    <a href="#top" data-label="Home" aria-label="Home"></a>
+    <a href="#about" data-label="About" aria-label="About"></a>
+    <a href="#services" data-label="Services" aria-label="Services"></a>
+    <a href="#contact" data-label="Contact" aria-label="Contact"></a>
+  </nav>
+
+  <script src="assets/js/cosmos.js"></script>
 </body>
-
 </html>

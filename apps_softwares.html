@@ -1,197 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Apps & Softwares</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-  <style>
-    .container {
-      padding-top: 10px;
-    }
-    .apps-section-title {
-      font-weight: 700;
-      font-size: 2.5rem;
-      margin-top: 60px;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: #0078ff;
-    }
-    .app-card {
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-      overflow: hidden;
-      background: #fff;
-    }
-    .app-card:hover {
-      transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 8px 32px rgba(0,120,255,0.13);
-    }
-    .app-card img {
-      object-fit: cover;
-      height: 210px;
-      width: 100%;
-    }
-    .app-card .card-title {
-      color: #0078ff;
-      font-weight: 600;
-      font-size: 1.3rem;
-      margin-bottom: .5rem;
-    }
-    .app-card .card-text {
-      color: #555;
-      font-size: 1rem;
-    }
-    /* Modal overlay styling */
-    #appModal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.75);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.2s;
-    }
-    #appModal.active {
-      display: flex;
-    }
-    #appModal .glightbox-container {
-      background: #fff;
-      border-radius: 1rem;
-      padding: 2rem;
-      position: relative;
-      max-width: 700px;
-      width: 95%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 8px 48px rgba(0,0,0,0.2);
-      animation: slideDown 0.2s;
-    }
-    #appModal .glightbox-close {
-      position: absolute;
-      top: 1rem;
-      right: 1.5rem;
-      font-size: 2rem;
-      border: none;
-      background: none;
-      color: #0078ff;
-      cursor: pointer;
-      z-index: 10;
-    }
-    #appGallery {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-    }
-    #appGallery img {
-      border-radius: 6px;
-      max-width: 170px;
-      max-height: 150px;
-      box-shadow: 0 2px 8px rgba(0,120,255,0.09);
-      cursor: pointer;
-      transition: box-shadow 0.2s;
-    }
-    #appGallery img:hover {
-      box-shadow: 0 4px 24px rgba(0,120,255,0.18);
-    }
-    @keyframes fadeIn { from { opacity: 0;} to { opacity: 1;} }
-    @keyframes slideDown { from { transform: translateY(-40px);} to { transform: translateY(0);} }
-    @media (max-width: 600px) {
-      .app-card img { height: 140px; }
-      #appModal .glightbox-container { padding: 1rem; }
-      #appGallery img { max-width: 90px; max-height: 70px; }
-    }
-  </style>
+  <title>Apps &amp; Softwares — IIMADOUU</title>
+  <meta name="description" content="Custom mobile applications and Windows desktop software by Imad Eddine Aris: Archiver, Stock Manager, HR Manager and more.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="assets/css/cosmos.css" rel="stylesheet">
 </head>
+
 <body>
-  <header id="header" class="fixed-top" style="background: #000000; box-shadow: 0 2px 16px rgba(0,0,0,0.07); transition: background 0.3s;">
-      <div class="container d-flex align-items-center justify-content-between">
-          <h1 class="logo"><a href="index.html">IIMADOUU</a></h1>
-          <nav id="navbar" class="navbar">
-              <ul>
-                  <li><a class="nav-link scrollto" href="index.html#hero">Home</a></li>
-                  <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-                  <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-                  <li><a class="nav-link active" href="apps_softwares.html">Apps & Softwares</a></li>
-                  <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
-              </ul>
-              <i class="bi bi-list mobile-nav-toggle"></i>
-          </nav>
+
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="nebula n1" aria-hidden="true"></div>
+  <div class="nebula n2" aria-hidden="true"></div>
+
+  <header class="site-head">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="index.html">
+        <span class="brand-orb" aria-hidden="true"></span>
+        <span class="brand-text">IIMADOUU<span>.</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#top">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="apps_softwares.html" class="is-active">Apps</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a class="btn btn--ghost" href="index.html#contact">Start a mission <span class="arw" aria-hidden="true">↗</span></a>
+        <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+          <span></span><span></span>
+        </button>
       </div>
+    </nav>
   </header>
-  <main class="container py-5">
-    <h1 class="apps-section-title">Apps & Softwares</h1>
-    <div class="row" id="apps-list">
-      <div class="col-md-4 mb-4">
-        <div class="card app-card" data-app="app1">
-          <img src="assets/apps_softwares/archiver 1.jpg" alt="App 1">
-          <div class="card-body">
-            <h5 class="card-title">Archiver: Archive et Secritariat</h5>
-            <p class="card-text">Effortlessly organize, archive, and search your documents with advanced OCR support.  
-Your all-in-one solution for digital document management and retrieval.</p>
-          </div>
+
+  <div class="menu" id="menu">
+    <a href="index.html#top"><em>00</em> Home</a>
+    <a href="index.html#about"><em>01</em> About</a>
+    <a href="index.html#services"><em>02</em> Services</a>
+    <a href="apps_softwares.html"><em>03</em> Apps &amp; Softwares</a>
+    <a href="pricing.html"><em>04</em> Pricing</a>
+    <a href="index.html#contact"><em>05</em> Contact</a>
+  </div>
+
+  <main>
+    <section class="page-top">
+      <div class="wrap">
+        <p class="eyebrow">03 — The hangar</p>
+        <h1>Apps &amp;<br><span class="grad">softwares.</span></h1>
+        <p class="lead">
+          Custom applications built for real work — documents, inventory, people. Each one designed
+          from the ground up and shipped with the people who use it every day.
+        </p>
+
+        <div class="apps-grid">
+
+          <button class="app reveal" type="button" data-app="app1">
+            <div class="app-shot">
+              <span class="app-tag">Desktop · Flutter</span>
+              <img src="assets/apps_softwares/archiver 1.jpg" alt="Archiver screenshot">
+            </div>
+            <div class="app-body">
+              <h3>Archiver: Archive et Secrétariat</h3>
+              <p>Effortlessly organize, archive, and search your documents with advanced OCR support. Your all-in-one solution for digital document management and retrieval.</p>
+              <div class="app-meta"><span>05 captures</span><span class="open">Open case <span aria-hidden="true">→</span></span></div>
+            </div>
+          </button>
+
+          <button class="app reveal" type="button" data-app="app2" style="--d:80ms">
+            <div class="app-shot">
+              <span class="app-tag">Desktop · Inventory</span>
+              <img src="assets/apps_softwares/stock 1.jpg" alt="Stock Manager screenshot">
+            </div>
+            <div class="app-body">
+              <h3>Stock Manager</h3>
+              <p>Easily track, manage, and analyze your inventory with intuitive controls and insightful reports. Perfect for businesses seeking efficient stock management and real-time updates.</p>
+              <div class="app-meta"><span>05 captures</span><span class="open">Open case <span aria-hidden="true">→</span></span></div>
+            </div>
+          </button>
+
+          <button class="app reveal" type="button" data-app="app3" style="--d:160ms">
+            <div class="app-shot">
+              <span class="app-tag">Desktop · HR</span>
+              <img src="assets/apps_softwares/rh 1.jpg" alt="Human Resources Manager screenshot">
+            </div>
+            <div class="app-body">
+              <h3>Human Resources Manager</h3>
+              <p>Manage employee records, attendance, payroll, and HR analytics in one place. Empower your HR department with automation and insightful dashboards.</p>
+              <div class="app-meta"><span>08 captures</span><span class="open">Open case <span aria-hidden="true">→</span></span></div>
+            </div>
+          </button>
+
+          <button class="app reveal" type="button" data-app="app4">
+            <div class="app-shot">
+              <span class="app-tag" style="color:var(--solar);border-color:rgba(251,191,36,.5)">In orbit · soon</span>
+              <img src="assets/apps_softwares/des 1.jpg" alt="Coming soon software screenshot">
+            </div>
+            <div class="app-body">
+              <h3>Coming soon</h3>
+              <p>A new software is on the way. Built quietly in the background — stay tuned for more details and features.</p>
+              <div class="app-meta"><span>03 captures</span><span class="open">Preview <span aria-hidden="true">→</span></span></div>
+            </div>
+          </button>
+
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="card app-card" data-app="app2">
-          <img src="assets/apps_softwares/stock 1.jpg" alt="Stock Manager">
-          <div class="card-body">
-            <h5 class="card-title">Stock Manager</h5>
-            <p class="card-text">Easily track, manage, and analyze your inventory with intuitive controls and insightful reports. 
-Perfect for businesses seeking efficient stock management and real-time updates.</p>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="panel reveal" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;padding:clamp(26px,4vw,40px)">
+          <div>
+            <p class="eyebrow">Need your own?</p>
+            <h2 class="h3" style="margin-top:14px">Every tool here started as one conversation.</h2>
           </div>
+          <a class="btn btn--primary" href="index.html#contact">Describe your software <span class="arw" aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="card app-card" data-app="app3">
-          <img src="assets/apps_softwares/rh 1.jpg" alt="Human Resources Manager">
-          <div class="card-body">
-            <h5 class="card-title">Human Resources Manager</h5>
-            <p class="card-text">Manage employee records, attendance, payroll, and HR analytics in one place. 
-Empower your HR department with automation and insightful dashboards.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card app-card" data-app="app4">
-          <img src="assets/apps_softwares/des 1.jpg" alt="Coming Soon">
-          <div class="card-body">
-            <h5 class="card-title">Coming Soon</h5>
-            <p class="card-text">A new software is on the way! Stay tuned for more details and features.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="appModal">
-      <div class="glightbox-container">
-        <button type="button" class="close glightbox-close" id="closeAppModal">&times;</button>
-        <div id="appGallery"></div>
-        <h3 id="appModalTitle" class="mt-3"></h3>
-        <p id="appModalDescription"></p>
-      </div>
-    </div>
+    </section>
   </main>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p class="foot-word" aria-hidden="true">IIMADOUU</p>
+      <div class="foot-row">
+        <span>© <span data-year>2026</span> IIMADOUU · All rights reserved</span>
+        <span>Designed &amp; built by <a href="mailto:imadedar98@gmail.com">Imad.EDAR</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- modal -->
+  <div class="modal" id="appModal" role="dialog" aria-modal="true" aria-labelledby="appModalTitle">
+    <div class="modal-box">
+      <button class="modal-close" type="button" id="closeAppModal" aria-label="Close">&times;</button>
+      <div class="gallery" id="appGallery"></div>
+      <h3 id="appModalTitle"></h3>
+      <p id="appModalDescription"></p>
+    </div>
+  </div>
+
+  <script src="assets/js/cosmos.js"></script>
   <script>
-    const appsData = {
+    var appsData = {
       app1: {
-        name: 'Archiver: Archive et Secritariat',
+        name: 'Archiver: Archive et Secrétariat',
         images: [
           'assets/apps_softwares/archiver 1.jpg',
           'assets/apps_softwares/archiver 2.jpg',
           'assets/apps_softwares/archiver 3.jpg',
           'assets/apps_softwares/archiver 4.jpg',
-          'assets/apps_softwares/archiver 5.jpg',
+          'assets/apps_softwares/archiver 5.jpg'
         ],
-        brief: 'Effortlessly organize, archive, and search your documents with advanced OCR support.  Your all-in-one solution for digital document management and retrieval.',
+        brief: 'Effortlessly organize, archive, and search your documents with advanced OCR support. Your all-in-one solution for digital document management and retrieval.',
         extended: 'Archiver is a powerful Flutter-based application designed to help individuals and organizations digitize, organize, and manage their documents with ease. Whether you are dealing with scanned paperwork, multi-page documents, or need to search through large archives, Archiver streamlines the entire process.'
       },
       app2: {
@@ -201,9 +172,9 @@ Empower your HR department with automation and insightful dashboards.</p>
           'assets/apps_softwares/stock 2.jpg',
           'assets/apps_softwares/stock 3.jpg',
           'assets/apps_softwares/stock 4.jpg',
-          'assets/apps_softwares/stock 5.jpg',
+          'assets/apps_softwares/stock 5.jpg'
         ],
-        brief: 'Easily track, manage, and analyze your inventory with intuitive controls and insightful reports. Perfect for businesses seeking efficient stock management and real-time updates.',
+        brief: 'Easily track, manage, and analyze your inventory with intuitive controls and insightful reports.',
         extended: 'Stock Manager is a comprehensive inventory management solution designed for businesses of all sizes. Effortlessly monitor stock levels, receive low-stock alerts, and generate detailed reports. With a user-friendly interface and real-time updates, Stock Manager helps you optimize your inventory, reduce waste, and make informed decisions for your business.'
       },
       app3: {
@@ -216,9 +187,9 @@ Empower your HR department with automation and insightful dashboards.</p>
           'assets/apps_softwares/rh 5.jpg',
           'assets/apps_softwares/rh 6.jpg',
           'assets/apps_softwares/rh 7.jpg',
-          'assets/apps_softwares/rh 8.jpg',
+          'assets/apps_softwares/rh 8.jpg'
         ],
-        brief: 'Manage employee records, attendance, payroll, and HR analytics in one place. Empower your HR department with automation and insightful dashboards.',
+        brief: 'Manage employee records, attendance, payroll, and HR analytics in one place.',
         extended: 'Human Resources Manager is an all-in-one HR solution for modern organizations. Easily manage employee data, track attendance, automate payroll, and generate HR analytics. With support for multiple users and secure data handling, this software streamlines HR operations and empowers your team with actionable insights.'
       },
       app4: {
@@ -226,36 +197,51 @@ Empower your HR department with automation and insightful dashboards.</p>
         images: [
           'assets/apps_softwares/des 1.jpg',
           'assets/apps_softwares/des 2.jpg',
-          'assets/apps_softwares/des 3.jpg',
+          'assets/apps_softwares/des 3.jpg'
         ],
-        brief: 'A new software is on the way! Stay tuned for more details and features.',
+        brief: 'A new software is on the way.',
         extended: 'We are working on an exciting new software. Check back soon for updates, screenshots, and feature announcements!'
       }
     };
-    document.querySelectorAll('.app-card').forEach(card => {
-      card.addEventListener('click', function() {
-        const appKey = this.getAttribute('data-app');
-        const app = appsData[appKey];
+
+    var modal = document.getElementById('appModal');
+
+    document.querySelectorAll('.app').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var app = appsData[this.getAttribute('data-app')];
         if (!app) return;
-        document.getElementById('appModalTitle').innerText = app.name;
-        document.getElementById('appModalDescription').innerText = app.extended;
-        const gallery = document.getElementById('appGallery');
+
+        document.getElementById('appModalTitle').textContent = app.name;
+        document.getElementById('appModalDescription').textContent = app.extended;
+
+        var gallery = document.getElementById('appGallery');
         gallery.innerHTML = '';
-        app.images.forEach((src, idx) => {
-          const img = document.createElement('img');
+        app.images.forEach(function (src, idx) {
+          var img = document.createElement('img');
           img.src = src;
-          img.alt = app.name + ' Screenshot ' + (idx+1);
-          img.onclick = () => window.open(src, '_blank');
+          img.alt = app.name + ' screenshot ' + (idx + 1);
+          img.addEventListener('click', function () {
+            window.open(src, '_blank');
+          });
           gallery.appendChild(img);
         });
-        document.getElementById('appModal').classList.add('active');
+
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
       });
     });
-    document.getElementById('closeAppModal').onclick = function() {
-      document.getElementById('appModal').classList.remove('active');
-    };
-    document.getElementById('appModal').addEventListener('click', function(e) {
-      if(e.target === this) this.classList.remove('active');
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('closeAppModal').addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
     });
   </script>
 </body>
