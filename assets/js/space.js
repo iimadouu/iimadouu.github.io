@@ -454,7 +454,7 @@
     var rockSpin = [];
     for (var ri = 0; ri < rocks.count; ri++) {
       var ang = Math.random() * Math.PI * 2;
-      var rad = 8.5 + Math.random() * 9.5;
+      var rad = 12 + Math.random() * 9;
       var sc = 0.03 + Math.random() * 0.075;
       dummy.position.set(Math.cos(ang) * rad, (Math.random() - 0.5) * 1.6, Math.sin(ang) * rad * 0.55 - 6);
       dummy.rotation.set(Math.random() * 6, Math.random() * 6, Math.random() * 6);
@@ -724,6 +724,14 @@
     var cometTimer = 0;
     var cometPhase = -1;
 
+    /* drag-to-spin: extra rotation layered on top of the automatic drift,
+       plus the globe's on-screen footprint so we can tell when it is grabbed */
+    var spin = { y: 0, x: 0, vy: 0, vx: 0 };
+    var grab = { on: false, id: null, x: 0, y: 0, moved: 0 };
+    var footprint = { cx: -9e4, cy: -9e4, r: 0 };
+    var probeA = new THREE.Vector3();
+    var probeB = new THREE.Vector3();
+
     function clamp01(v) { return Math.max(0, Math.min(1, v)); }
     function seg(p, a, b) { return clamp01((p - a) / (b - a)); }
     function ease(k) { return k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; }
@@ -774,12 +782,25 @@
       var narrow = camera.aspect < 1.06;
       var pl = smoothKeys(planetPath, p);
       planetGroup.position.set(
-        pl.x * spread * (narrow ? 1.45 : 1),
-        pl.y - (narrow ? 3.65 : 0),
+        pl.x * spread * (narrow ? 1.8 : 1),
+        pl.y - (narrow ? 3.85 : 0),
         pl.z
       );
       planetGroup.rotation.z = Math.sin(t * 0.12) * 0.02;
       planetGroup.scale.setScalar((1 - 0.1 * ease(seg(p, 0.6, 1))) * (narrow ? 0.45 : 1));
+
+      /* what the visitor has grabbed, on top of the idle drift */
+      planetGroup.rotation.y = spin.y;
+      planetGroup.rotation.x = spin.x;
+
+      /* project the globe to screen space for the grab handler */
+      probeA.copy(planetGroup.position).project(camera);
+      probeB
+        .set(planetGroup.position.x + R * planetGroup.scale.x, planetGroup.position.y, planetGroup.position.z)
+        .project(camera);
+      footprint.cx = (probeA.x * 0.5 + 0.5) * window.innerWidth;
+      footprint.cy = (-probeA.y * 0.5 + 0.5) * window.innerHeight;
+      footprint.r = Math.abs(probeB.x - probeA.x) * 0.5 * window.innerWidth;
 
       surface.rotation.y = t * 0.045;
       surface.material.uniforms.uTime.value = t;
@@ -795,7 +816,7 @@
 
       /* asteroid belt drifts past, then clears the page */
       belt.rotation.y = p * 0.9 + t * 0.008;
-      belt.position.z = p * 3.2;
+      belt.position.z = -9 + p * 3.4;
       var beltOut = 1 - ease(seg(p, 0.22, 0.46));
       belt.scale.setScalar(Math.max(0.001, beltOut));
 
@@ -880,6 +901,83 @@
       }
     }
 
+    /* ---------------- grab the world ---------------- */
+    if (!reduce) {
+      var hint = document.querySelector("[data-spin-hint]");
+      var retireHint = function () {
+        if (hint) hint.classList.add("gone");
+        try { sessionStorage.setItem("iimadouu_spin", "1"); } catch (err) {}
+      };
+      try {
+        if (sessionStorage.getItem("iimadouu_spin") === "1" && hint) hint.classList.add("gone");
+      } catch (err) {}
+
+      var overWorld = function (e) {
+        if (footprint.r < 12 || planetGroup.scale.x < 0.15) return false;
+        var dx = e.clientX - footprint.cx;
+        var dy = e.clientY - footprint.cy;
+        return dx * dx + dy * dy < footprint.r * footprint.r * 1.5;
+      };
+      var onChrome = function (e) {
+        var t = e.target;
+        return !!(t && t.closest && t.closest("a,button,input,textarea,select,label,.boot"));
+      };
+      var release = function (e) {
+        if (!grab.on) return;
+        if (e && e.pointerId !== undefined && e.pointerId !== grab.id) return;
+        grab.on = false;
+        grab.id = null;
+        document.body.classList.remove("is-grabbing");
+        /* a spin should never leave the paragraph behind it selected */
+        if (grab.moved > 6) {
+          var sel = window.getSelection && window.getSelection();
+          if (sel && sel.removeAllRanges) sel.removeAllRanges();
+        }
+      };
+
+      window.addEventListener(
+        "pointerdown",
+        function (e) {
+          if (e.button || grab.on || onChrome(e) || !overWorld(e)) return;
+          grab.on = true;
+          grab.id = e.pointerId;
+          grab.x = e.clientX;
+          grab.y = e.clientY;
+          grab.moved = 0;
+          spin.vy = 0;
+          spin.vx = 0;
+          document.body.classList.add("is-grabbing");
+          retireHint();
+        },
+        { passive: true }
+      );
+
+      window.addEventListener(
+        "pointermove",
+        function (e) {
+          if (!grab.on) {
+            document.body.classList.toggle("can-grab", !onChrome(e) && overWorld(e));
+            return;
+          }
+          if (e.pointerId !== grab.id) return;
+          var dx = e.clientX - grab.x;
+          var dy = e.clientY - grab.y;
+          grab.x = e.clientX;
+          grab.y = e.clientY;
+          grab.moved += Math.abs(dx) + Math.abs(dy);
+          spin.y += dx * 0.008;
+          spin.x = Math.max(-0.6, Math.min(0.6, spin.x + dy * 0.005));
+          spin.vy = spin.vy * 0.4 + dx * 0.0045;
+          spin.vx = spin.vx * 0.4 + dy * 0.0012;
+        },
+        { passive: true }
+      );
+
+      window.addEventListener("pointerup", release, { passive: true });
+      window.addEventListener("pointercancel", release, { passive: true });
+      window.addEventListener("blur", function () { release(); });
+    }
+
     /* ---------------- loop ---------------- */
     var revealed = false;
     function reveal() {
@@ -911,6 +1009,15 @@
         if (document.hidden) return;
         var t = clock.getElapsedTime();
         progress += (targetProgress - progress) * 0.055;
+
+        /* a released globe keeps spinning, then settles; tilt re-levels slowly */
+        if (!grab.on) {
+          spin.y += spin.vy;
+          spin.vy *= 0.945;
+          spin.x = Math.max(-0.6, Math.min(0.6, spin.x + spin.vx));
+          spin.vx *= 0.9;
+          spin.x += -spin.x * 0.004;
+        }
         camX += (pointerX * 0.2 - camX) * 0.045;
         camY += (-pointerY * 0.15 - camY) * 0.045;
         apply(progress, t);

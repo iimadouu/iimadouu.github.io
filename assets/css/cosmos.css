@@ -413,6 +413,29 @@ h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.06}
 }
 .hero-meta b{display:block;color:var(--star);font-weight:500;font-size:.8rem;letter-spacing:.06em;margin-top:6px;text-transform:none}
 
+/* invitation to grab the world; retires once the visitor has spun it */
+.hero-meta .spin-hint{
+  flex:0 0 100%;
+  margin:0;
+  display:flex;align-items:center;gap:10px;
+  font-size:.6rem;letter-spacing:.22em;
+  color:var(--ion);
+  opacity:.6;
+  transition:opacity .6s ease;
+}
+.hero-meta .spin-hint::before{
+  content:"";
+  width:18px;height:1px;
+  background:currentColor;
+  opacity:.75;
+}
+.hero-meta .spin-hint.gone{opacity:0}
+
+/* pointer feedback while the globe is grabbable */
+body.can-grab,body.can-grab *{cursor:grab}
+body.is-grabbing,body.is-grabbing *{cursor:grabbing}
+body.is-grabbing{-webkit-user-select:none;user-select:none}
+
 /* planet system */
 .stage{
   position:relative;
@@ -1429,7 +1452,7 @@ html{scrollbar-color:#6b5ba8 #070614;scrollbar-width:thin}
   .marquee{transform:rotate(-2deg) scale(1.05)}
 }
 @media (max-width:620px){
-  .hero-meta{background:linear-gradient(180deg,rgba(5,4,15,0),rgba(5,4,15,.66))}
+  .hero-meta{background:linear-gradient(180deg,rgba(5,4,15,0),rgba(5,4,15,.82))}
   .hud{display:none}
   .wrap{width:calc(100% - 32px)}
   .nav{width:calc(100% - 28px);min-height:66px}
