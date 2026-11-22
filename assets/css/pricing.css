@@ -361,3 +361,33 @@ header{
   .quote-btn{padding:9px 12px;font-size:.6rem;letter-spacing:.1em;gap:6px}
   .quote-btn i{font-size:.75rem}
 }
+
+/* ---------- "prices are not final" notice ---------- */
+.price-note{
+  position:relative;z-index:2;
+  max-width:1076px;
+  margin:0 auto clamp(26px,4vw,40px);
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:18px 22px;
+  border-radius:16px;
+  border:1px solid rgba(255,199,122,.28);
+  background:linear-gradient(100deg,rgba(255,199,122,.10),rgba(185,167,255,.08));
+  font-size:.92rem;
+  color:var(--muted,#a9a4c8);
+}
+.price-note i{color:#ffc77a;font-size:1.15rem;flex:none}
+.price-note p{margin:0;flex:1 1 320px;line-height:1.5}
+.price-note .note-link{
+  flex:none;
+  font-family:var(--font-m);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:#08061a;font-weight:700;
+  padding:11px 18px;border-radius:999px;
+  background:linear-gradient(120deg,#ffd79a,#b9a7ff 60%,#7de3ff);
+  transition:transform .25s ease,filter .25s ease;
+  white-space:nowrap;
+}
+.price-note .note-link:hover{transform:translateY(-1px);filter:brightness(1.06)}
+@media (max-width:620px){
+  .price-note{padding:16px;gap:12px;font-size:.86rem}
+  .price-note .note-link{width:100%;text-align:center}
+}

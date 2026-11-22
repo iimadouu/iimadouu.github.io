@@ -30,6 +30,8 @@
       errContact: "Please give a name and either an email or a phone number.",
       errAll: "Please answer every question — pick “Not sure” if you don't know.",
       errApi: "The invoice could not be generated. Check your connection and try again.",
+      errLimit: "That's enough invoices for now — please try again later or contact me directly.",
+      errWait: "An invoice was just generated. You can make another in {s}s.",
       choose: "— choose an answer —",
       answered: "answered",
       from: "From",
@@ -61,6 +63,8 @@
       errContact: "Indiquez un nom et soit un e-mail soit un téléphone.",
       errAll: "Merci de répondre à toutes les questions — choisissez « Je ne sais pas » au besoin.",
       errApi: "La facture n'a pas pu être générée. Vérifiez votre connexion et réessayez.",
+      errLimit: "Assez de devis pour le moment — réessayez plus tard ou contactez-moi directement.",
+      errWait: "Une facture vient d'être générée. Vous pourrez en refaire une dans {s}s.",
       choose: "— choisissez une réponse —",
       answered: "répondu",
       from: "À partir de",
@@ -92,6 +96,8 @@
       errContact: "يرجى إدخال الاسم وبريد إلكتروني أو رقم هاتف.",
       errAll: "يرجى الإجابة على كل الأسئلة — اختر «لا أعرف» إن لم تكن متأكداً.",
       errApi: "تعذّر إنشاء الفاتورة. تحقق من الاتصال وحاول مرة أخرى.",
+      errLimit: "هذا يكفي من الفواتير الآن — حاول لاحقاً أو تواصل معي مباشرة.",
+      errWait: "تم إنشاء فاتورة للتو. يمكنك إنشاء أخرى بعد {s} ثانية.",
       choose: "— اختر إجابة —",
       answered: "تمت الإجابة",
       from: "ابتداءً من",
@@ -487,49 +493,27 @@
 
   function buildPrompt() {
     var s = state.service;
-    var contact = {
+    var c = {
       name: $("#c-name").value.trim(),
       company: $("#c-company").value.trim(),
       email: $("#c-email").value.trim(),
       phone: $("#c-phone").value.trim()
     };
     var rows = s.questions.map(function (q, i) {
-      return (i + 1) + ". " + pick(q.q) + " => " + (state.answers[q.id] || "(no answer)");
+      return (i + 1) + ") " + pick(q.q) + " => " + (state.answers[q.id] || "-");
     }).join("\n");
 
+    /* short on purpose: fewer tokens in, fewer tokens out */
     return [
-      "You are writing a proforma invoice (facture proforma) for a young Algerian freelance developer.",
-      "Brand: IIMADOUU — Imad Eddine Aris, Chebli, Blida, Algeria. Email: imadedar98@gmail.com.",
-      "Write every human-readable string in " + LANGS[state.lang] + ".",
-      "",
-      "CLIENT",
-      "Name: " + contact.name,
-      "Company: " + (contact.company || "individual"),
-      "Email: " + contact.email,
-      "Phone: " + contact.phone,
-      "",
-      "PROJECT TYPE: " + pick(s.name),
-      "CLIENT ANSWERS:",
+      "Proforma invoice for Algerian freelance dev IIMADOUU (Imad Eddine Aris, Chebli Blida, imadedar98@gmail.com).",
+      "Write in " + LANGS[state.lang] + ".",
+      "Client: " + c.name + " | " + (c.company || "individual") + " | " + c.email + " | " + c.phone,
+      "Project: " + pick(s.name),
       rows,
-      "",
-      "PRICING RULES (strict)",
-      "- Currency is Algerian dinar (DZD). Amounts are integers, no decimals, no currency symbols.",
-      "- Prices must be extremely cheap and honest for Algeria — a fraction of agency prices, because this is a solo freelancer.",
-      "- Ceilings: simple website <= 20000; fuller website <= 45000; backend/API <= 60000; mobile app <= 70000; business software <= 55000.",
-      "- The grand total must be between 8000 and 75000 DZD. Aim for the lower half when the answers describe something small.",
-      "- Split the work into 3 to 6 line items the client understands (design, build, content, hosting setup, training, store publishing…).",
-      "- qty is the number of units (pages, screens, languages…); unitPrice * qty must equal total for each line.",
-      "- Add a discount only if it makes the total rounder or friendlier.",
-      "- Payment terms: 50% deposit to start, 50% on delivery, unless the answers suggest otherwise.",
-      "- Estimated timeline must be realistic and match the deadline answer.",
-      "- The proforma is valid for 15 days. Never write 30 days or any other validity period.",
-      "",
-      "Return ONLY a JSON object with this exact shape:",
-      '{"number":"PF-2026-001","issueDate":"YYYY-MM-DD","validUntil":"YYYY-MM-DD",',
-      '"items":[{"label":"...","detail":"...","qty":1,"unitPrice":0,"total":0}],',
-      '"discount":0,"timeline":"...","paymentTerms":"...",',
-      '"notes":["..."],"footer":"..."}',
-      "Do not wrap it in markdown. Every field is required."
+      "Prices: DZD integers, extremely cheap (site<=45000, backend<=60000, app<=70000, software<=55000, total 8000-75000).",
+      "Rules: max 4 items; label<=55 chars; detail<=65 chars; qty = pages/screens/languages else 1; unitPrice*qty=total; discount optional.",
+      "timeline and paymentTerms: one short sentence each. notes: max 2 bullets, each <=70 chars.",
+      'JSON only: {"items":[{"label":"","detail":"","qty":1,"unitPrice":0,"total":0}],"discount":0,"timeline":"","paymentTerms":"","notes":[""],"footer":""}'
     ].join("\n");
   }
 
@@ -570,7 +554,7 @@
 
   /* ---------------- invoice ---------------- */
   function renderInvoice(d) {
-    var items = Array.isArray(d.items) ? d.items : [];
+    var items = (Array.isArray(d.items) ? d.items : []).slice(0, 4);
     var subtotal = 0;
     var rows = items.map(function (it) {
       var qty = Number(it.qty) || 1;
@@ -647,6 +631,16 @@
       missing[0].focus();
       return;
     }
+
+    /* one invoice per visitor per 90s, before we even call the proxy */
+    var last = 0;
+    try { last = Number(localStorage.getItem("iimadouu_quote_at") || 0) || 0; } catch (e) {}
+    var left = Math.ceil((90000 - (Date.now() - last)) / 1000);
+    if (left > 0) {
+      err.textContent = t("errWait").replace("{s}", left);
+      err.classList.add("on");
+      return;
+    }
     err.classList.remove("on");
     all("#qgrid select").forEach(function (s) { state.answers[s.getAttribute("data-qid")] = s.value; });
 
@@ -656,11 +650,16 @@
 
     ask(lastPrompt).then(function (text) {
       renderInvoice(parseJson(text));
+      try { localStorage.setItem("iimadouu_quote_at", String(Date.now())); } catch (e) {}
       show("#result");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }).catch(function (e) {
       show("#step-questions");
-      err.textContent = t("errApi") + (e && e.message ? " (" + e.message + ")" : "");
+      if (e && e.status === 429) {
+        err.textContent = t("errLimit");
+      } else {
+        err.textContent = t("errApi");
+      }
       err.classList.add("on");
     });
   });
