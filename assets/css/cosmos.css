@@ -1085,8 +1085,163 @@ body.cursor-hot .cursor-ring{
 }
 .rail a:hover::before{opacity:1}
 
+/* ---------------- service pages ---------------- */
+.crumbs{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+  margin-bottom:24px;
+  font-family:var(--font-m);
+  font-size:.58rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--dim);
+}
+.crumbs a{color:var(--muted)}
+.crumbs a:hover{color:var(--ion)}
+.crumbs i{font-style:normal;opacity:.45}
+
+.service-hero .lead{max-width:62ch}
+.service-hero .hero-actions{margin-top:30px}
+
+.split{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:clamp(28px,5vw,64px);
+  align-items:start;
+}
+.prose p{color:var(--muted);line-height:1.85;margin:0 0 18px;max-width:68ch}
+.prose p:last-child{margin-bottom:0}
+.prose strong{color:var(--star);font-weight:500}
+.prose h2,.prose h3{margin:0 0 14px}
+
+.checklist{list-style:none;margin:0;padding:0}
+.checklist li{
+  position:relative;
+  padding:11px 0 11px 28px;
+  border-bottom:1px solid var(--line);
+  color:var(--muted);
+  font-size:.92rem;
+  line-height:1.6;
+}
+.checklist li:last-child{border-bottom:0}
+.checklist li::before{
+  content:"✦";
+  position:absolute;
+  left:0;top:11px;
+  font-size:.68rem;
+  color:var(--ion);
+  text-shadow:0 0 10px rgba(56,225,240,.8);
+}
+
+.facts--sm b{font-size:1.02rem;letter-spacing:-.01em}
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:14px;
+  margin-top:38px;
+}
+.step{
+  position:relative;
+  padding:24px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:linear-gradient(165deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  transition:border-color .35s,transform .35s var(--ease);
+}
+.step:hover{border-color:rgba(163,152,255,.36);transform:translateY(-4px)}
+.step b{
+  display:block;
+  margin-bottom:12px;
+  font-family:var(--font-m);
+  font-size:.58rem;
+  letter-spacing:.24em;
+  color:var(--ion);
+}
+.step h3{font-size:.98rem;margin-bottom:8px;font-weight:600}
+.step p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.65}
+
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+.chips span{
+  padding:8px 15px;
+  border-radius:100px;
+  border:1px solid var(--line-2);
+  background:rgba(255,255,255,.03);
+  font-family:var(--font-m);
+  font-size:.6rem;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.faq{margin-top:34px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  padding:20px 2px;
+  cursor:pointer;
+  list-style:none;
+  color:var(--star);
+  font-size:1rem;
+  line-height:1.5;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";
+  flex:none;
+  font-family:var(--font-m);
+  color:var(--ion);
+  font-size:1.1rem;
+  line-height:1;
+  transition:transform .3s;
+}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:0 0 20px;color:var(--muted);font-size:.92rem;line-height:1.8;max-width:70ch}
+
+.related{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+  margin-top:32px;
+}
+.related .card h3{font-size:.98rem;margin-bottom:6px}
+.related .card p{font-size:.85rem}
+.related .card .card-num{color:var(--ion);letter-spacing:.2em}
+
+/* ---------------- footer link map ---------------- */
+.foot-nav{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(165px,1fr));
+  gap:30px;
+  padding-bottom:46px;
+  text-align:left;
+}
+.foot-col h4{
+  margin:0 0 14px;
+  font-family:var(--font-m);
+  font-size:.58rem;
+  font-weight:400;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--dim);
+}
+.foot-col a{
+  display:block;
+  padding:5px 0;
+  color:var(--muted);
+  font-size:.9rem;
+  transition:color .25s,transform .25s;
+}
+.foot-col a:hover{color:var(--star);transform:translateX(3px)}
+
 /* ---------------- responsive ---------------- */
 @media (max-width:1024px){
+  .split{grid-template-columns:1fr}
   .hero-grid{grid-template-columns:1fr;gap:10px}
   .stage{max-width:420px;margin:10px auto 0;order:-1}
   .stage-label{display:none}

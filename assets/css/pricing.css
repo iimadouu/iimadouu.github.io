@@ -310,20 +310,6 @@ header{
 }
 .cta-btn:hover{transform:translateY(-2px);box-shadow:0 20px 54px -14px rgba(56,225,240,.9)}
 
-/* ─── FOOTER ─── */
-footer{
-  position:relative;z-index:2;
-  border-top:1px solid var(--border);
-  padding:26px 20px;
-  text-align:center;
-  font-family:var(--font-m);
-  font-size:.6rem;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:var(--dim);
-}
-footer strong{color:var(--muted);font-weight:500}
-
 /* ─── ENTRANCE ─── */
 .fade-in{
   opacity:0;

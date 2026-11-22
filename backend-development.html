@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Backend and API Development in Algeria — Python, Flask, Express | IIMADOUU</title>
+  <meta name="description" content="Backend and REST API development in Algeria: Flask and Express APIs, database design, authentication, roles, payments and real-time sync. Built by IIMADOUU.">
+  <meta name="keywords" content="backend developer algeria, api developer algeria, developpeur backend algerie, rest api algeria, python developer algeria, flask developer algeria, node express algeria, backend blida, برمجة الباك اند الجزائر">
+  <meta name="author" content="Imad Eddine Aris">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://iimadouu.github.io/backend-development.html">
+  <meta name="theme-color" content="#05040f">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IIMADOUU">
+  <meta property="og:locale" content="en_DZ">
+  <meta property="og:title" content="Backend and API Development in Algeria — Python, Flask, Express | IIMADOUU">
+  <meta property="og:description" content="Backend and REST API development in Algeria: Flask and Express APIs, database design, authentication, roles, payments and real-time sync. Built by IIMADOUU.">
+  <meta property="og:url" content="https://iimadouu.github.io/backend-development.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Backend and API Development in Algeria — Python, Flask, Express | IIMADOUU">
+  <meta name="twitter:description" content="Backend and REST API development in Algeria: Flask and Express APIs, database design, authentication, roles, payments and real-time sync. Built by IIMADOUU.">
+
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="assets/css/cosmos.css" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Backend and API development",
+    "serviceType": "Backend and API development",
+    "description": "Backend and REST API development in Algeria: Flask and Express APIs, database design, authentication, roles, payments and real-time sync. Built by IIMADOUU.",
+    "url": "https://iimadouu.github.io/backend-development.html",
+    "provider": {
+      "@type": "Person",
+      "name": "Imad Eddine Aris",
+      "url": "https://iimadouu.github.io/",
+      "email": "imadedar98@gmail.com",
+      "telephone": "+213657496125",
+      "jobTitle": "Web designer and full stack developer",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Chebli",
+        "addressRegion": "Blida",
+        "addressCountry": "DZ"
+      },
+      "sameAs": [
+        "https://www.facebook.com/iimadouu",
+        "https://www.instagram.com/iimadouu/"
+      ]
+    },
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "Algeria"
+      },
+      {
+        "@type": "City",
+        "name": "Algiers"
+      },
+      {
+        "@type": "City",
+        "name": "Oran"
+      },
+      {
+        "@type": "City",
+        "name": "Constantine"
+      },
+      {
+        "@type": "City",
+        "name": "Blida"
+      },
+      {
+        "@type": "City",
+        "name": "Sétif"
+      },
+      {
+        "@type": "City",
+        "name": "Annaba"
+      }
+    ],
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "DZD",
+      "price": "15000",
+      "description": "From 15,000 DZD, quoted per project",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What exactly is a backend or an API?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The backend is the part users do not see: it stores data, checks permissions and enforces rules. An API is the doorway your website or mobile app uses to ask the backend for things — log this user in, list these products, save this order."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you build with Python or JavaScript?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both. Python with Flask for data-heavy and analytical work, JavaScript with Express when the rest of the product is JavaScript. I recommend whichever fits your project rather than whichever is fashionable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does backend development cost in Algeria?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A basic REST API with database design starts at 15,000 DZD. Authentication, roles and cloud integration typically sit at 40,000–70,000 DZD, and scalable custom architectures start at 150,000 DZD."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you connect to my existing app or database?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. I regularly add an API to an existing database, or connect a new frontend to a backend someone else built. I start with a short audit so nothing existing gets broken."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will my API be secure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Validation, hashed passwords, role checks, rate limiting and safe handling of secrets are part of the standard build, not extras. For sensitive projects I also document the threat model so you know what is protected and how."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you integrate online payments?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — local and international payment providers, depending on what your business can legally use. I integrate the provider API and handle confirmation on the backend, where it cannot be tampered with."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://iimadouu.github.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://iimadouu.github.io/#services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Backend and API development",
+        "item": "https://iimadouu.github.io/backend-development.html"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="nebula n1" aria-hidden="true"></div>
+  <div class="nebula n2" aria-hidden="true"></div>
+
+  <header class="site-head">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="index.html">
+        <span class="brand-orb" aria-hidden="true"></span>
+        <span class="brand-text">IIMADOUU<span>.</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#top">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#services" class="is-active">Services</a></li>
+        <li><a href="apps_softwares.html">Apps</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a class="btn btn--ghost" href="index.html#contact">Start a mission <span class="arw" aria-hidden="true">&#8599;</span></a>
+        <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="menu" id="menu">
+    <a href="index.html#top"><em>00</em> Home</a>
+    <a href="index.html#about"><em>01</em> About</a>
+    <a href="index.html#services"><em>02</em> Services</a>
+    <a href="apps_softwares.html"><em>03</em> Apps &amp; Softwares</a>
+    <a href="pricing.html"><em>04</em> Pricing</a>
+    <a href="index.html#contact"><em>05</em> Contact</a>
+  </div>
+
+  <main>
+    <section class="page-top service-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a> <i>/</i>
+          <a href="index.html#services">Services</a> <i>/</i>
+          <span>Backend and API development</span>
+        </nav>
+
+        <p class="eyebrow">Service 03 &mdash; Backend and API development</p>
+        <h1>Backend and API<br><span class="grad">development in Algeria.</span></h1>
+        <p class="lead">The engine under your product: REST APIs, database design, authentication and business logic that stays correct when real users arrive.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="index.html#contact">Get a quote <span class="arw" aria-hidden="true">&#8599;</span></a>
+          <a class="btn btn--ghost" href="pricing.html">See pricing <span class="arw" aria-hidden="true">&#8599;</span></a>
+        </div>
+
+        <div class="facts facts--sm">
+          <div><b>From 15,000 DZD</b><span>Starting price</span></div>
+          <div><b>2–5 weeks</b><span>Typical delivery</span></div>
+          <div><b>Blida · all of Algeria</b><span>Where I work</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="split">
+          <div class="prose reveal">
+            <p class="eyebrow">The approach</p>
+            <h2 class="h2" style="font-size:clamp(1.6rem,3vw,2.2rem)">What this actually looks like.</h2>
+            <p>A frontend is only as good as what it talks to. I design and build backends that hold data safely, enforce the rules your business actually has, and stay understandable a year later when something needs to change.</p>
+            <p>I work mainly in Python with Flask and in JavaScript with Express. Databases are modelled properly — Firebase or Google Cloud for managed setups, relational designs where the data demands it. Every endpoint gets validation, sensible error codes and documentation, so another developer can pick it up without a meeting.</p>
+            <p>Security is not an afterthought: password hashing, role-based access, input validation, rate limits and safe handling of secrets are part of the build. If your product takes payments or stores personal data, that foundation has to be right from day one.</p>
+          </div>
+
+          <div class="panel reveal" style="--d:120ms">
+            <div class="panel-head"><span>Included</span><b>&#9679; fixed scope</b></div>
+            <ul class="checklist">
+            <li>REST API design and implementation</li>
+            <li>Database schema and data modelling</li>
+            <li>Authentication: email, social login, token sessions</li>
+            <li>Role and permission management</li>
+            <li>Input validation and error handling</li>
+            <li>API documentation for your team</li>
+            <li>Payment and third-party integrations</li>
+            <li>Deployment, environment configuration and monitoring</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow">Deliverables</p>
+          <h2 class="h2">What you can expect<br><span class="grad">to receive.</span></h2>
+        </div>
+        <div class="cards">
+          <div class="card reveal" data-glow style="--d:0ms">
+            <span class="card-num">01</span>
+            <h3>REST APIs</h3>
+            <p>Clean, documented endpoints your web or mobile app can rely on for years.</p>
+          </div>
+
+          <div class="card reveal" data-glow style="--d:60ms">
+            <span class="card-num">02</span>
+            <h3>Authentication and roles</h3>
+            <p>Sign-up, login, password reset, admin and user permissions done safely.</p>
+          </div>
+
+          <div class="card reveal" data-glow style="--d:120ms">
+            <span class="card-num">03</span>
+            <h3>Database design</h3>
+            <p>Schemas that fit your real data, with migrations you can trust.</p>
+          </div>
+
+          <div class="card reveal" data-glow style="--d:180ms">
+            <span class="card-num">04</span>
+            <h3>Real-time features</h3>
+            <p>Live updates and syncing for chat, orders, dashboards or notifications.</p>
+          </div>
+
+          <div class="card reveal" data-glow style="--d:240ms">
+            <span class="card-num">05</span>
+            <h3>Payments and integrations</h3>
+            <p>Local and international payment providers, SMS, email and external APIs.</p>
+          </div>
+
+          <div class="card reveal" data-glow style="--d:300ms">
+            <span class="card-num">06</span>
+            <h3>Scaling and maintenance</h3>
+            <p>Refactoring a backend that has outgrown its first version.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow">Process</p>
+          <h2 class="h2">Four steps, no mystery.</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <b>01 Model</b>
+            <h3>01 Model</h3>
+            <p>We map the data, the actors and the rules before any code is written.</p>
+          </div>
+
+          <div class="step">
+            <b>02 Contract</b>
+            <h3>02 Contract</h3>
+            <p>The API surface is agreed and documented, so frontend work can start in parallel.</p>
+          </div>
+
+          <div class="step">
+            <b>03 Build</b>
+            <h3>03 Build</h3>
+            <p>Endpoints, auth, validation and tests, delivered in reviewable milestones.</p>
+          </div>
+
+          <div class="step">
+            <b>04 Ship</b>
+            <h3>04 Ship</h3>
+            <p>Deployment, environment secrets, logging and a handover session.</p>
+          </div>
+        </div>
+
+        <div class="chips reveal">          <span>Python</span>
+          <span>Flask</span>
+          <span>Node.js</span>
+          <span>Express</span>
+          <span>REST</span>
+          <span>JWT</span>
+          <span>Firebase</span>
+          <span>PostgreSQL</span>
+          <span>Cloud</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow">Questions</p>
+          <h2 class="h2">Asked, answered.</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>What exactly is a backend or an API?</summary>
+            <p>The backend is the part users do not see: it stores data, checks permissions and enforces rules. An API is the doorway your website or mobile app uses to ask the backend for things — log this user in, list these products, save this order.</p>
+          </details>
+
+          <details>
+            <summary>Do you build with Python or JavaScript?</summary>
+            <p>Both. Python with Flask for data-heavy and analytical work, JavaScript with Express when the rest of the product is JavaScript. I recommend whichever fits your project rather than whichever is fashionable.</p>
+          </details>
+
+          <details>
+            <summary>How much does backend development cost in Algeria?</summary>
+            <p>A basic REST API with database design starts at 15,000 DZD. Authentication, roles and cloud integration typically sit at 40,000–70,000 DZD, and scalable custom architectures start at 150,000 DZD.</p>
+          </details>
+
+          <details>
+            <summary>Can you connect to my existing app or database?</summary>
+            <p>Yes. I regularly add an API to an existing database, or connect a new frontend to a backend someone else built. I start with a short audit so nothing existing gets broken.</p>
+          </details>
+
+          <details>
+            <summary>Will my API be secure?</summary>
+            <p>Validation, hashed passwords, role checks, rate limiting and safe handling of secrets are part of the standard build, not extras. For sensitive projects I also document the threat model so you know what is protected and how.</p>
+          </details>
+
+          <details>
+            <summary>Can you integrate online payments?</summary>
+            <p>Yes — local and international payment providers, depending on what your business can legally use. I integrate the provider API and handle confirmation on the backend, where it cannot be tampered with.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow">Keep exploring</p>
+          <h2 class="h2" style="font-size:clamp(1.5rem,2.8vw,2rem)">Other ways I can help.</h2>
+        </div>
+        <div class="related">
+          <a class="card" href="web-development.html">
+            <span class="card-num">02</span>
+            <h3>Web development</h3>
+            <p>Fast, hand-built websites and interfaces — no bloated page builders, no template that collapses on a.</p>
+          </a>
+
+          <a class="card" href="mobile-app-development.html">
+            <span class="card-num">04</span>
+            <h3>Mobile app development</h3>
+            <p>One Flutter codebase, two stores, no compromise. Android and iOS apps built around how people actually.</p>
+          </a>
+
+          <a class="card" href="ecommerce-development.html">
+            <span class="card-num">06</span>
+            <h3>E-commerce and marketplace development</h3>
+            <p>Online stores built for how people here actually buy — cash on delivery, phone confirmation, and a.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact">
+      <div class="wrap">
+        <div class="panel reveal" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:clamp(28px,4vw,44px)">
+          <div>
+            <p class="eyebrow">Open a channel</p>
+            <h2 class="h2" style="font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:8px">Tell me about the project.</h2>
+            <p class="lead" style="margin:0">Backend and API development in Algeria, French or English &mdash; reply usually within a day.</p>
+          </div>
+          <div class="hero-actions" style="margin:0">
+            <a class="btn btn--primary" href="mailto:imadedar98@gmail.com?subject=Backend and API development%20project">Email me <span class="arw" aria-hidden="true">&#8599;</span></a>
+            <a class="btn btn--ghost" href="tel:+213657496125">Call <span class="arw" aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="foot-nav">
+        <div class="foot-col">
+          <h4>Services</h4>
+          <a href="web-design.html">Web design</a>
+          <a href="web-development.html">Website development</a>
+          <a href="backend-development.html">Backend &amp; APIs</a>
+          <a href="mobile-app-development.html">Mobile apps</a>
+          <a href="software-development.html">Windows software</a>
+          <a href="ecommerce-development.html">E-commerce</a>
+        </div>
+        <div class="foot-col">
+          <h4>Site</h4>
+          <a href="index.html">Home</a>
+          <a href="index.html#about">About</a>
+          <a href="apps_softwares.html">Apps &amp; softwares</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h4>Direct</h4>
+          <a href="mailto:imadedar98@gmail.com">imadedar98@gmail.com</a>
+          <a href="tel:+213657496125">+213 657 496 125</a>
+          <a href="https://www.facebook.com/iimadouu" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/iimadouu/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+        <div class="foot-col">
+          <h4>Languages</h4>
+          <a href="pricing.html" hreflang="en">English</a>
+          <a href="pricing.html" hreflang="fr">Français</a>
+          <a href="pricing.html" hreflang="ar">العربية</a>
+        </div>
+      </div>
+      <p class="foot-word" aria-hidden="true">IIMADOUU</p>
+      <div class="foot-row">
+        <span>&copy; <span data-year>2026</span> IIMADOUU &middot; All rights reserved</span>
+        <span>Designed &amp; built by <a href="mailto:imadedar98@gmail.com">Imad.EDAR</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/cosmos.js"></script>
+</body>
+</html>
