@@ -1040,13 +1040,43 @@ body.cursor-hot .cursor-ring{
   position:fixed;
   inset:0;
   z-index:9998;
+  overflow:hidden;
   pointer-events:none;
   opacity:0;
   background:
-    radial-gradient(circle at 50% 50%,rgba(56,225,240,.45),rgba(124,58,237,.4) 30%,rgba(5,4,15,.98) 62%);
-  transition:opacity .45s ease;
+    radial-gradient(circle at 50% 50%,rgba(56,225,240,.42),rgba(124,58,237,.42) 26%,rgba(5,4,15,.99) 58%);
+  transition:opacity .3s ease;
+}
+.warp::before{
+  content:"";
+  position:absolute;
+  inset:-35%;
+  background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(220,240,255,.85) 0deg .5deg, transparent .5deg 3.4deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%, transparent 8%, #000 38%, transparent 74%);
+  mask-image:radial-gradient(circle at 50% 50%, transparent 8%, #000 38%, transparent 74%);
+  opacity:0;
+  transform:scale(.5) rotate(0deg);
+  transition:opacity .3s ease, transform .9s cubic-bezier(.2,.7,.2,1);
 }
 .warp.on{opacity:1}
+.warp.on::before{opacity:.55;transform:scale(1.5) rotate(14deg)}
+
+/* sector-crossing flash */
+.flash{
+  position:fixed;
+  inset:0;
+  z-index:9990;
+  pointer-events:none;
+  opacity:0;
+  background:radial-gradient(circle at 50% 50%,rgba(170,225,255,.24),rgba(140,120,255,.10) 34%,transparent 62%);
+  transition:opacity .5s ease;
+}
+.flash.on{opacity:1;transition:opacity .08s ease}
+
+/* page exit */
+body{transition:background-color .4s ease}
+.site-head,main,.site-foot,.hud{transition:opacity .35s ease}
+body.is-leaving .site-head,body.is-leaving main,body.is-leaving .site-foot,body.is-leaving .hud{opacity:0}
 
 /* scroll rail */
 .rail{
@@ -1105,6 +1135,30 @@ body.has-3d .hero .stage{opacity:0;pointer-events:none;transition:opacity .9s ea
   transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
 }
 .hero-copy{will-change:transform,opacity}
+
+/* ---------------- cinematic finish ---------------- */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  background-image:
+    radial-gradient(120% 95% at 50% 45%, rgba(0,0,0,0) 52%, rgba(3,2,10,.42) 100%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.42'/></svg>");
+  background-size:cover, 140px 140px;
+  opacity:.28;
+}
+
+html{scrollbar-color:#6b5ba8 #070614;scrollbar-width:thin}
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:#060511}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--ion),var(--plasma));
+  border-radius:10px;
+  border:3px solid #060511;
+}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#7ef0fb,#c4b0ff)}
 
 /* ---------------- mission HUD ---------------- */
 .hud{

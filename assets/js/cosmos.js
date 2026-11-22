@@ -312,20 +312,32 @@
       var a = e.target.closest ? e.target.closest("a") : null;
       if (!a) return;
       var href = a.getAttribute("href") || "";
-      if (!href || href.charAt(0) === "#") return;
+      if (!href || href.charAt(0) === "#") {
+        /* in-page jump: short warp pulse so the transition feels continuous */
+        var pulse = document.querySelector(".flash");
+        if (pulse) {
+          pulse.classList.add("on");
+          setTimeout(function () {
+            pulse.classList.remove("on");
+          }, 180);
+        }
+        return;
+      }
       if (a.target === "_blank" || a.hasAttribute("download")) return;
       if (/^(mailto:|tel:|https?:\/\/)/i.test(href) && a.host !== window.location.host) return;
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
 
       e.preventDefault();
       layer.classList.add("on");
+      document.body.classList.add("is-leaving");
       setTimeout(function () {
         window.location.href = href;
-      }, 340);
+      }, 430);
     });
 
     window.addEventListener("pageshow", function () {
       layer.classList.remove("on");
+      document.body.classList.remove("is-leaving");
     });
   })();
 
@@ -408,7 +420,36 @@
   })();
 
   /* ------------------------------------------------------------
-     11. INSTRUMENTATION: HUD, hero tilt, boot sequence
+     11. SECTOR JUMP FLASH
+     ------------------------------------------------------------ */
+  (function sectorFlash() {
+    var hud = document.querySelector(".hud");
+    var sector = hud && hud.querySelector("[data-hud-sector]");
+    if (!sector) return;
+
+    var flash = document.createElement("div");
+    flash.className = "flash";
+    flash.setAttribute("aria-hidden", "true");
+    document.body.appendChild(flash);
+
+    var last = sector.textContent;
+    var timer = null;
+
+    var obs = new MutationObserver(function () {
+      if (sector.textContent === last) return;
+      last = sector.textContent;
+      flash.classList.add("on");
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        flash.classList.remove("on");
+      }, 200);
+    });
+
+    if (window.MutationObserver) obs.observe(sector, { childList: true, characterData: true, subtree: true });
+  })();
+
+  /* ------------------------------------------------------------
+     12. INSTRUMENTATION: HUD, hero tilt, boot sequence
      ------------------------------------------------------------ */
   (function instrumentation() {
     var hud = document.querySelector(".hud");
