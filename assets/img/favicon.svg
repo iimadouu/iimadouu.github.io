@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="IIMADOUU">
+  <defs>
+    <radialGradient id="bg" cx="46%" cy="34%" r="78%">
+      <stop offset="0" stop-color="#1b1445"/>
+      <stop offset="1" stop-color="#05040f"/>
+    </radialGradient>
+    <radialGradient id="orb" cx="34%" cy="26%" r="82%">
+      <stop offset="0" stop-color="#bff8ff"/>
+      <stop offset="0.3" stop-color="#57c2f2"/>
+      <stop offset="0.62" stop-color="#1f66b6"/>
+      <stop offset="1" stop-color="#081742"/>
+    </radialGradient>
+    <linearGradient id="shade" x1="0.2" y1="0" x2="0.95" y2="1">
+      <stop offset="0.4" stop-color="#05040f" stop-opacity="0"/>
+      <stop offset="1" stop-color="#05040f" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffd79a"/>
+      <stop offset="0.5" stop-color="#cdb6ff"/>
+      <stop offset="1" stop-color="#7de3ff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#7de3ff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#7de3ff" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="orbClip"><circle cx="32" cy="32" r="15.2"/></clipPath>
+  </defs>
+
+  <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+  <circle cx="32" cy="32" r="26" fill="url(#glow)"/>
+
+  <!-- far side of the ring, behind the world -->
+  <g transform="rotate(-16 32 35)" fill="none" stroke="url(#ring)" stroke-linecap="round">
+    <path d="M7 35 A25 7.4 0 0 1 57 35" stroke-width="2.4" opacity="0.85"/>
+  </g>
+
+  <!-- the world -->
+  <circle cx="32" cy="32" r="15.2" fill="url(#orb)"/>
+  <g clip-path="url(#orbClip)">
+    <!-- continents: two soft landmasses that survive 16px -->
+    <path d="M24 25c3-2 6-1.5 7 1 .8 2-.6 3.6-2.4 4-1 .2-1.6 1-1.4 2.4.2 1.6.6 2.6-.4 3.4-1.2.9-3 0-3.8-1.4-1.4-2.4-1.6-5.2-.4-7.4.5-1 1-1.8 1.4-2z" fill="#2f7d55" opacity="0.95"/>
+    <path d="M37.5 33.5c2-.8 4 .4 3.9 2.4-.1 2-1.7 3.4-3.4 3.2-1.6-.2-2.5-1.6-2.3-3.2.1-1.3.9-2 1.8-2.4z" fill="#2f7d55" opacity="0.85"/>
+    <!-- polar ice, clipped to the sphere -->
+    <ellipse cx="32" cy="18.6" rx="13.6" ry="6.4" fill="#eaf7ff" opacity="0.62"/>
+    <ellipse cx="32" cy="47.6" rx="12.4" ry="5.6" fill="#eaf7ff" opacity="0.42"/>
+    <!-- terminator -->
+    <circle cx="32" cy="32" r="15.2" fill="url(#shade)"/>
+  </g>
+
+  <!-- near side of the ring, in front of the world -->
+  <g transform="rotate(-16 32 35)" fill="none" stroke="url(#ring)" stroke-linecap="round">
+    <path d="M7 35 A25 7.4 0 0 0 57 35" stroke-width="2.2" opacity="0.9"/>
+  </g>
+
+  <!-- a star keeping the corner alive -->
+  <circle cx="50" cy="13" r="3.4" fill="url(#glow)"/>
+  <circle cx="50" cy="13" r="1.4" fill="#eaf9ff"/>
+  <circle cx="13.5" cy="50" r="1" fill="#cdb6ff" opacity="0.8"/>
+</svg>
