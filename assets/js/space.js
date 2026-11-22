@@ -184,12 +184,12 @@
     "  float a = atan(vLocal.y, vLocal.x);",
     "  float t = clamp((r - uInner) / (uOuter - uInner), 0.0, 1.0);",
     "  float edge = smoothstep(uInner, uInner + 0.22, r) * (1.0 - smoothstep(uOuter - 0.85, uOuter, r));",
-    "  float shear = 0.55 + 0.45 * sin(a * 4.0 - uTime * 2.6 + r * 5.0);",
-    "  float filament = 0.7 + 0.3 * sin(a * 11.0 + uTime * 1.4 - r * 13.0);",
+    "  float shear = 0.62 + 0.38 * sin(a * 4.0 - uTime * 2.6 + r * 5.0);",
+    "  float filament = 0.82 + 0.18 * sin(a * 9.0 + uTime * 1.4 - r * 11.0);",
     "  float doppler = 0.55 + 0.75 * pow(max(cos(a - 0.55), 0.0), 1.6);",
     "  vec3 col = mix(uHot, uCool, pow(t, 0.85));",
     "  col += vec3(1.0, 0.92, 0.78) * pow(1.0 - t, 5.0) * 1.5;",
-    "  float alpha = edge * shear * filament * doppler * 1.05;",
+    "  float alpha = edge * shear * filament * doppler * 1.0;",
     "  gl_FragColor = vec4(col * alpha, alpha);",
     "}"
   ].join("\n");
@@ -260,7 +260,7 @@
 
     /* ---------------- stars + warp streaks ---------------- */
     var STAR_N = small ? 1500 : 2800;
-    var WARP_N = small ? 420 : 820;
+    var WARP_N = small ? 140 : 300;
     var starPos = new Float32Array(STAR_N * 3);
     var starCol = new Float32Array(STAR_N * 3);
     var accent = new THREE.Color();
@@ -394,6 +394,7 @@
     var rings = new THREE.Group();
     rings.rotation.x = -Math.PI / 2 + 0.44;
     rings.rotation.z = -0.17;
+    rings.scale.setScalar(0.9);
     planetGroup.add(rings);
 
     var ringDefs = [
@@ -453,8 +454,8 @@
     var rockSpin = [];
     for (var ri = 0; ri < rocks.count; ri++) {
       var ang = Math.random() * Math.PI * 2;
-      var rad = 6.5 + Math.random() * 8.5;
-      var sc = 0.035 + Math.random() * 0.115;
+      var rad = 8.5 + Math.random() * 9.5;
+      var sc = 0.03 + Math.random() * 0.075;
       dummy.position.set(Math.cos(ang) * rad, (Math.random() - 0.5) * 1.6, Math.sin(ang) * rad * 0.55 - 6);
       dummy.rotation.set(Math.random() * 6, Math.random() * 6, Math.random() * 6);
       dummy.scale.setScalar(sc);
@@ -574,7 +575,7 @@
         uHot: { value: new THREE.Color(0xfff0c8) },
         uCool: { value: new THREE.Color(0x8a3fd0) },
         uInner: { value: 1.12 },
-        uOuter: { value: 3.6 }
+        uOuter: { value: 3.15 }
       },
       vertexShader: RING_VERT,
       fragmentShader: DISK_FRAG,
@@ -583,7 +584,7 @@
       side: THREE.DoubleSide,
       blending: THREE.AdditiveBlending
     });
-    var accretion = new THREE.Mesh(new THREE.RingGeometry(1.12, 3.6, 256, 1), accretionMat);
+    var accretion = new THREE.Mesh(new THREE.RingGeometry(1.12, 3.15, 256, 1), accretionMat);
     accretion.rotation.x = -Math.PI / 2 + 0.72;
     accretion.rotation.z = 0.1;
     hole.add(accretion);
@@ -638,7 +639,7 @@
         "uniform vec3 uColor;",
         "varying float vY;",
         "void main(){",
-        "  float a = smoothstep(2.6, 0.2, abs(vY)) * 0.16;",
+        "  float a = smoothstep(1.7, 0.0, abs(vY)) * 0.05;",
         "  gl_FragColor = vec4(uColor * 1.4, a);",
         "}"
       ].join("\n"),
@@ -647,9 +648,10 @@
       side: THREE.DoubleSide,
       blending: THREE.AdditiveBlending
     });
+    /* thin, dim jets only: wide cones read as translucent blades at this scale */
     [-1, 1].forEach(function (dir) {
-      var jet = new THREE.Mesh(new THREE.ConeGeometry(0.42, 5.2, 24, 1, true), jetMat);
-      jet.position.y = dir * 2.9;
+      var jet = new THREE.Mesh(new THREE.ConeGeometry(0.1, 3.4, 18, 1, true), jetMat);
+      jet.position.y = dir * 2.1;
       if (dir < 0) jet.rotation.z = Math.PI;
       hole.add(jet);
     });
@@ -703,10 +705,12 @@
 
     var planetPath = [
       { p: 0.0, x: 1.55, y: 0.0, z: 0.0 },
-      { p: 0.25, x: 2.1, y: 0.28, z: -0.5 },
-      { p: 0.5, x: 3.4, y: 0.9, z: -1.8 },
-      { p: 0.72, x: 2.3, y: 0.25, z: -4.4 },
-      { p: 1.0, x: 0.3, y: -0.9, z: -6.8 }
+      { p: 0.1, x: 1.85, y: 0.18, z: -0.4 },
+      { p: 0.18, x: 3.7, y: 0.8, z: -2.2 },
+      { p: 0.3, x: 5.6, y: 1.3, z: -4.2 },
+      { p: 0.6, x: 6.0, y: 1.6, z: -6.2 },
+      { p: 0.8, x: 5.6, y: 1.1, z: -8.2 },
+      { p: 1.0, x: 8.6, y: 1.3, z: -10.5 }
     ];
 
     /* ---------------- state ---------------- */
@@ -715,6 +719,7 @@
     var velocity = 0;
     var smoothVel = 0;
     var lastScroll = window.scrollY || 0;
+    var lastScrollAt = 0;
     var pointerX = 0, pointerY = 0, camX = 0, camY = 0;
     var cometTimer = 0;
     var cometPhase = -1;
@@ -729,6 +734,7 @@
       targetProgress = max > 0 ? clamp01(window.scrollY / max) : 0;
       velocity = Math.min(1, Math.abs(window.scrollY - lastScroll) / 90);
       lastScroll = window.scrollY;
+      lastScrollAt = performance.now();
     }
 
     window.addEventListener("scroll", readScroll, { passive: true });
@@ -767,9 +773,13 @@
       /* planet journey + gentle roll */
       var narrow = camera.aspect < 1.06;
       var pl = smoothKeys(planetPath, p);
-      planetGroup.position.set(pl.x * spread, pl.y - (narrow ? 0.45 : 0), pl.z);
+      planetGroup.position.set(
+        pl.x * spread * (narrow ? 1.45 : 1),
+        pl.y - (narrow ? 3.2 : 0),
+        pl.z
+      );
       planetGroup.rotation.z = Math.sin(t * 0.12) * 0.02;
-      planetGroup.scale.setScalar((1 - 0.1 * ease(seg(p, 0.6, 1))) * (narrow ? 0.9 : 1));
+      planetGroup.scale.setScalar((1 - 0.1 * ease(seg(p, 0.6, 1))) * (narrow ? 0.45 : 1));
 
       surface.rotation.y = t * 0.045;
       surface.material.uniforms.uTime.value = t;
@@ -783,26 +793,29 @@
         m.mesh.rotation.y = t * 0.3;
       });
 
-      /* asteroid belt drifts past */
+      /* asteroid belt drifts past, then clears the page */
       belt.rotation.y = p * 0.9 + t * 0.008;
       belt.position.z = p * 3.2;
+      var beltOut = 1 - ease(seg(p, 0.22, 0.46));
+      belt.scale.setScalar(Math.max(0.001, beltOut));
 
       /* second world */
-      var bIn = ease(seg(p, 0.38, 0.76));
-      worldB.scale.setScalar(0.001 + bIn * 0.95);
+      var bIn = ease(seg(p, 0.38, 0.68));
+      var bOut = 1 - ease(seg(p, 0.66, 0.82));
+      worldB.scale.setScalar(Math.max(0.001, (0.001 + bIn * 0.95) * bOut));
       worldB.rotation.y = 0.6 - t * 0.035;
-      worldB.position.y = lerp(-2.1, -1.25, bIn) + (spread < 0.78 ? 1.1 : 0);
-      worldB.position.x = -3.7 * spread;
+      worldB.position.y = lerp(-3.2, -2.8, bIn) + (spread < 0.78 ? 1.4 : 0);
+      worldB.position.x = -10.5 * spread;
       bClouds.rotation.y = -t * 0.05;
       bRingMat.uniforms.uTime.value = t;
       bClouds.material.uniforms.uTime.value = t + 0.6;
       worldB.children[0].material.uniforms.uTime.value = t;
 
       /* black hole final approach */
-      var hIn = ease(seg(p, 0.56, 0.96));
-      hole.position.y = lerp(-9.5, -1.45, hIn);
-      hole.position.x = lerp(-2.6, -0.2, hIn) * (spread < 0.78 ? 0.55 : 1);
-      hole.scale.setScalar(lerp(0.5, 1.2, hIn));
+      var hIn = ease(seg(p, 0.44, 0.76));
+      hole.position.y = lerp(-9.5, -1.25, hIn);
+      hole.position.x = lerp(-2.6, 0.7, hIn) * (spread < 0.78 ? 0.7 : 1);
+      hole.scale.setScalar(lerp(0.45, 1.05, hIn));
       hole.rotation.z = t * 0.05;
       accretion.rotation.z = 0.1 + t * 0.28;
       accretionMat.uniforms.uTime.value = t;
@@ -810,7 +823,8 @@
       photon.lookAt(camera.position);
       lensHalo.lookAt(camera.position);
       photonMat.uniforms.uColor.value.setHSL(0.09, 0.85, 0.62 + Math.sin(t * 1.4) * 0.06);
-      holeGlow.material.opacity = 0.5 + hIn * 0.5;
+      holeGlow.material.opacity = 0.55 + hIn * 0.45;
+      holeGlow.scale.setScalar(8.5 + hIn * 2.5);
 
       /* stars travel + warp streaks from scroll velocity */
       smoothVel += (velocity - smoothVel) * 0.08;
@@ -821,7 +835,10 @@
       warpLines.rotation.y = stars.rotation.y;
       warpLines.position.z = stars.position.z;
 
-      var boost = 6 + smoothVel * 70;
+      /* streaks belong to active scrolling only — never parked on screen */
+      var scrolling = performance.now() - lastScrollAt < 150;
+      var streak = scrolling ? Math.min(0.28, smoothVel * 0.7) : 0;
+      var boost = 2 + streak * 42;
       var arr = warpGeo.attributes.position.array;
       for (var wi = 0; wi < WARP_N; wi++) {
         var si = warpPick[wi] * 3;
@@ -831,10 +848,11 @@
         arr[wi * 6 + 2] = sz;
         arr[wi * 6 + 3] = sx * (1 + boost * 0.004);
         arr[wi * 6 + 4] = sy * (1 + boost * 0.004);
-        arr[wi * 6 + 5] = sz + boost * 0.1;
+        arr[wi * 6 + 5] = sz + boost * 0.12;
       }
       warpGeo.attributes.position.needsUpdate = true;
-      warpLines.material.opacity = Math.min(0.55, smoothVel * 0.85);
+      warpLines.material.opacity = streak;
+      warpLines.visible = streak > 0.008;
 
       nebulae.forEach(function (sp, idx) {
         sp.material.opacity = 0.5 + Math.sin(t * 0.18 + idx * 1.3) * 0.14;

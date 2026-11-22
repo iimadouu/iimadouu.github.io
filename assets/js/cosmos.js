@@ -271,13 +271,21 @@
 
     var mx = window.innerWidth / 2, my = window.innerHeight / 2;
     var rx = mx, ry = my;
-    document.body.classList.add("has-cursor");
+    var activated = false;
 
     window.addEventListener(
       "pointermove",
       function (e) {
         mx = e.clientX;
         my = e.clientY;
+        if (!activated) {
+          /* stay hidden until the pointer really moves, so no stray ring
+             sits in the middle of the hero on first load */
+          activated = true;
+          rx = mx;
+          ry = my;
+          document.body.classList.add("has-cursor");
+        }
         dot.style.transform = "translate3d(" + mx + "px," + my + "px,0)";
       },
       { passive: true }
@@ -482,6 +490,9 @@
           if (sector) sector.textContent = label;
           if (alt) alt.textContent = String(Math.round(p * 9840)).padStart(5, "0") + " km";
           if (bar) bar.style.width = (p * 100).toFixed(1) + "%";
+          /* the instrument belongs to the launch: it fades out with the hero
+             so it never sits on top of buttons or body copy further down */
+          hud.style.opacity = String(Math.max(0, Math.min(1, 1 - window.scrollY / (window.innerHeight * 0.55))));
         }
 
         if (heroCopy && !reduce) {
