@@ -332,3 +332,32 @@ header{
   .fade-in{opacity:1;transform:none}
   *{animation-duration:.001ms !important;transition-duration:.001ms !important}
 }
+
+/* ---------- quote entry points ---------- */
+.quote-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;border-radius:999px;text-decoration:none;
+  font-family:var(--font-m,monospace);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:#08061a;font-weight:700;
+  background:linear-gradient(120deg,#b9a7ff,#7de3ff 70%);
+  box-shadow:0 8px 26px rgba(125,227,255,.22);
+  transition:transform .25s ease,filter .25s ease;
+  white-space:nowrap;
+}
+.quote-btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.quote-btn i{font-size:.85rem}
+
+.cta-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
+.cta-actions .cta-btn{margin:0}
+.cta-quote{
+  background:linear-gradient(120deg,#b9a7ff,#7de3ff 70%)!important;
+  color:#08061a!important;font-weight:700;
+  box-shadow:0 12px 34px rgba(125,227,255,.25);
+}
+.cta-quote i{color:#08061a!important}
+.cta-ghost{background:transparent!important;border:1px solid rgba(255,255,255,.22)!important}
+
+@media (max-width:720px){
+  .quote-btn{padding:9px 12px;font-size:.6rem;letter-spacing:.1em;gap:6px}
+  .quote-btn i{font-size:.75rem}
+}

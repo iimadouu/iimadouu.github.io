@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get a quote — instant proforma invoice | IIMADOUU</title>
+  <meta name="description" content="Answer a few plain-language questions about your project and get an instant proforma invoice in Algerian dinar (DZD). Website, backend, mobile app or software.">
+  <link rel="canonical" href="https://iimadouu.github.io/quote.html">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/img/favicon.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#05040f">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/quote.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav class="qnav">
+      <a class="brand" href="index.html"><i></i>IIMADOUU</a>
+      <a class="back" href="pricing.html" data-i18n="back">← Back to pricing</a>
+    </nav>
+
+    <section class="intro">
+      <p class="kicker" data-i18n="kicker">Instant quote</p>
+      <h1 data-i18n="h1">Tell me what you want<br>to build. <em>I'll price it.</em></h1>
+      <p class="lede" data-i18n="lede">No technical words, no forms that assume you already know the answer. Pick your language, answer a few simple questions — most of them are dropdowns — and you'll get a proforma invoice in Algerian dinar, ready to print.</p>
+    </section>
+
+    <section class="gate" id="gate">
+      <h2 data-i18n="chooseLang">Choose your language</h2>
+      <div class="langs">
+        <button class="lang" data-lang="en"><b>English</b><span>Continue in English</span></button>
+        <button class="lang" data-lang="fr"><b>Français</b><span>Continuer en français</span></button>
+        <button class="lang" data-lang="ar"><b>العربية</b><span>المتابعة بالعربية</span></button>
+      </div>
+    </section>
+
+    <section class="step" id="step-service">
+      <div class="step-head">
+        <span class="step-num">01</span>
+        <h2 data-i18n="qService">What do you want to build?</h2>
+      </div>
+      <div class="services" id="services"></div>
+    </section>
+
+    <section class="step" id="step-contact">
+      <div class="step-head">
+        <span class="step-num">02</span>
+        <h2 data-i18n="qWho">Who is this invoice for?</h2>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label for="c-name" data-i18n="fName">Your name</label>
+          <input type="text" id="c-name" autocomplete="name" placeholder="Imad">
+        </div>
+        <div class="field">
+          <label for="c-company" data-i18n="fCompany">Company (optional)</label>
+          <input type="text" id="c-company" autocomplete="organization" placeholder="—">
+        </div>
+        <div class="field">
+          <label for="c-email" data-i18n="fEmail">Email</label>
+          <input type="email" id="c-email" autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="c-phone" data-i18n="fPhone">Phone / WhatsApp</label>
+          <input type="tel" id="c-phone" autocomplete="tel" placeholder="+213 …">
+        </div>
+      </div>
+      <div class="actions">
+        <button class="primary" id="to-questions" data-i18n="nextQuestions">Continue to the questions</button>
+        <button class="ghost" data-back data-i18n="backStep">Back</button>
+        <span class="count" id="c-count"></span>
+      </div>
+      <p class="err" id="contact-err" data-i18n="errContact">Please give a name and either an email or a phone number.</p>
+    </section>
+
+    <section class="step" id="step-questions">
+      <div class="step-head">
+        <span class="step-num">03</span>
+        <h2 id="questions-title" data-i18n="qDetails">A few questions about the project</h2>
+      </div>
+      <div class="qgrid" id="qgrid"></div>
+      <div class="actions">
+        <button class="primary" id="generate" data-i18n="generate">Generate my proforma invoice</button>
+        <button class="ghost" data-back data-i18n="backStep">Back</button>
+        <span class="count" id="q-count"></span>
+      </div>
+      <p class="err" id="gen-err"></p>
+    </section>
+
+    <section class="busy" id="busy">
+      <div class="orb"></div>
+      <p data-i18n="working">Writing your proforma invoice…</p>
+    </section>
+
+    <section class="result" id="result">
+      <div id="paper"></div>
+      <div class="after">
+        <button class="primary" id="print" data-i18n="print">Print / Save as PDF</button>
+        <button class="ghost" id="again" data-i18n="again">Start over</button>
+        <span class="note" data-i18n="keepNote">Keep this page — the proforma is valid 15 days.</span>
+      </div>
+    </section>
+  </div>
+
+  <script src="assets/js/quote-config.js"></script>
+  <script src="assets/js/quote.js"></script>
+</body>
+</html>
