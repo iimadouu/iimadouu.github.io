@@ -1005,8 +1005,8 @@ h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.06}
 /* ---------------- reveal ---------------- */
 .reveal{
   opacity:0;
-  transform:translateY(26px);
-  transition:opacity .9s var(--ease),transform .9s var(--ease);
+  transform:translateY(30px) scale(.965);
+  transition:opacity 1s var(--ease),transform 1s var(--ease);
   transition-delay:var(--d,0ms);
 }
 .reveal.in{opacity:1;transform:none}
@@ -1084,6 +1084,86 @@ body.cursor-hot .cursor-ring{
   transition:opacity .3s;
 }
 .rail a:hover::before{opacity:1}
+
+/* ---------------- deep field (WebGL) ---------------- */
+#space3d{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 1.6s ease;
+}
+body.has-3d #space3d{opacity:1}
+body.has-3d #stars{opacity:0;transition:opacity 1.2s ease}
+body.has-3d .hero .stage{opacity:0;pointer-events:none;transition:opacity .9s ease}
+
+.hero h1{
+  transform-style:preserve-3d;
+  transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+}
+.hero-copy{will-change:transform,opacity}
+
+/* ---------------- mission HUD ---------------- */
+.hud{
+  position:fixed;
+  left:clamp(16px,2.4vw,30px);
+  bottom:22px;
+  z-index:106;
+  display:grid;
+  gap:7px;
+  font-family:var(--font-m);
+  font-size:.54rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dim);
+  pointer-events:none;
+  opacity:0;
+  animation:hudIn 1.2s 1s ease forwards;
+}
+@keyframes hudIn{to{opacity:1}}
+.hud .row{display:flex;align-items:center;gap:9px}
+.hud b{color:var(--ion);font-weight:400;letter-spacing:.14em}
+.hud .bar{display:block;width:120px;height:1px;background:rgba(255,255,255,.14);overflow:hidden}
+.hud .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ion),var(--plasma));box-shadow:0 0 8px rgba(56,225,240,.75)}
+
+/* ---------------- boot sequence ---------------- */
+.boot{
+  position:fixed;
+  inset:0;
+  z-index:9997;
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle at 50% 58%,#0a0820 0%,#05040f 70%);
+  transition:opacity .7s ease,visibility .7s;
+}
+.boot.done{opacity:0;visibility:hidden}
+.boot-inner{
+  width:min(540px,86vw);
+  display:grid;
+  gap:11px;
+  font-family:var(--font-m);
+  font-size:.64rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.boot-line{display:flex;gap:10px;opacity:0;transform:translateY(5px)}
+.boot-line.on{animation:bootLine .45s ease forwards}
+.boot-line i{color:var(--ion);font-style:normal}
+.boot-line b{margin-left:auto;color:var(--mint);font-weight:400}
+.boot-bar{margin-top:14px;height:1px;background:rgba(255,255,255,.12);overflow:hidden;position:relative}
+.boot-bar::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--ion),var(--plasma));
+  transform:scaleX(0);transform-origin:left;
+  animation:bootBar 1.5s var(--ease) forwards;
+}
+@keyframes bootBar{to{transform:scaleX(1)}}
+@keyframes bootLine{to{opacity:1;transform:none}}
 
 /* ---------------- service pages ---------------- */
 .crumbs{
@@ -1257,6 +1337,7 @@ body.cursor-hot .cursor-ring{
   .marquee{transform:rotate(-2deg) scale(1.05)}
 }
 @media (max-width:620px){
+  .hud{display:none}
   .wrap{width:calc(100% - 32px)}
   .nav{width:calc(100% - 28px);min-height:66px}
   .hero-actions .btn{width:100%}

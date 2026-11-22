@@ -406,4 +406,112 @@
     var y = document.querySelector("[data-year]");
     if (y) y.textContent = new Date().getFullYear();
   })();
+
+  /* ------------------------------------------------------------
+     11. INSTRUMENTATION: HUD, hero tilt, boot sequence
+     ------------------------------------------------------------ */
+  (function instrumentation() {
+    var hud = document.querySelector(".hud");
+    var hero = document.querySelector(".hero");
+    var heroCopy = document.querySelector(".hero-copy");
+    var heroTitle = hero ? hero.querySelector("h1") : null;
+
+    if (hud || heroCopy) {
+      var max = 1;
+      var ticking = false;
+
+      var measure = function () {
+        max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      };
+
+      var paint = function () {
+        ticking = false;
+        var p = Math.min(1, window.scrollY / max);
+
+        if (hud) {
+          var sector = hud.querySelector("[data-hud-sector]");
+          var alt = hud.querySelector("[data-hud-alt]");
+          var bar = hud.querySelector("[data-hud-progress]");
+          var label =
+            p < 0.18 ? "01 \u00b7 origin" :
+            p < 0.42 ? "02 \u00b7 profile" :
+            p < 0.64 ? "03 \u00b7 capabilities" :
+            p < 0.86 ? "04 \u00b7 hangar" :
+            "05 \u00b7 event horizon";
+          if (sector) sector.textContent = label;
+          if (alt) alt.textContent = String(Math.round(p * 9840)).padStart(5, "0") + " km";
+          if (bar) bar.style.width = (p * 100).toFixed(1) + "%";
+        }
+
+        if (heroCopy && !reduce) {
+          heroCopy.style.transform =
+            "translateY(" + (-p * 170).toFixed(1) + "px) scale(" + (1 - p * 0.16).toFixed(3) + ")";
+          heroCopy.style.opacity = Math.max(0, 1 - p * 2.4).toFixed(2);
+        }
+      };
+
+      var request = function () {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(paint);
+        }
+      };
+
+      measure();
+      paint();
+      window.addEventListener("scroll", request, { passive: true });
+      window.addEventListener("resize", function () { measure(); paint(); }, { passive: true });
+    }
+
+    if (hero && heroTitle && !touch && !reduce) {
+      hero.addEventListener(
+        "pointermove",
+        function (e) {
+          var r = hero.getBoundingClientRect();
+          var x = (e.clientX - r.left) / r.width - 0.5;
+          var y = (e.clientY - r.top) / r.height - 0.5;
+          heroTitle.style.setProperty("--ry", (x * 6).toFixed(2) + "deg");
+          heroTitle.style.setProperty("--rx", (-y * 5).toFixed(2) + "deg");
+        },
+        { passive: true }
+      );
+      hero.addEventListener("pointerleave", function () {
+        heroTitle.style.setProperty("--ry", "0deg");
+        heroTitle.style.setProperty("--rx", "0deg");
+      });
+    }
+
+    var boot = document.querySelector(".boot");
+    if (boot) {
+      var seen = false;
+      try {
+        seen = sessionStorage.getItem("iimadouu_boot") === "1";
+      } catch (e) {}
+
+      if (reduce || seen) {
+        boot.remove();
+      } else {
+        var lines = boot.querySelectorAll(".boot-line");
+        for (var i = 0; i < lines.length; i++) {
+          (function (line, idx) {
+            setTimeout(function () {
+              line.classList.add("on");
+            }, 130 + idx * 210);
+          })(lines[i], i);
+        }
+        setTimeout(function () {
+          boot.classList.add("done");
+          try {
+            sessionStorage.setItem("iimadouu_boot", "1");
+          } catch (e) {}
+        }, 1700);
+        setTimeout(function () {
+          if (boot.parentNode) boot.remove();
+        }, 2600);
+        boot.addEventListener("click", function () {
+          boot.classList.add("done");
+        });
+      }
+    }
+  })();
 })();

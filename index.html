@@ -213,6 +213,17 @@
 
 <body>
 
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <div class="boot-line"><i>&gt;</i> establishing uplink</div>
+      <div class="boot-line"><i>&gt;</i> calibrating orbital telemetry <b>ok</b></div>
+      <div class="boot-line"><i>&gt;</i> rendering deep field <b>ok</b></div>
+      <div class="boot-line"><i>&gt;</i> welcome, visitor</div>
+      <div class="boot-bar"></div>
+    </div>
+  </div>
+
+  <canvas id="space3d" aria-hidden="true"></canvas>
   <canvas id="stars" aria-hidden="true"></canvas>
   <div class="nebula n1" aria-hidden="true"></div>
   <div class="nebula n2" aria-hidden="true"></div>
@@ -605,6 +616,13 @@
     <a href="#contact" data-label="Contact" aria-label="Contact"></a>
   </nav>
 
+  <div class="hud" aria-hidden="true">
+    <div class="row">sector <b data-hud-sector>01 &middot; origin</b></div>
+    <div class="row">alt <b data-hud-alt>00000 km</b></div>
+    <div class="row">progress <span class="bar"><i data-hud-progress></i></span></div>
+  </div>
+
   <script src="assets/js/cosmos.js"></script>
+  <script src="assets/js/space.js"></script>
 </body>
 </html>
