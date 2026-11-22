@@ -1429,6 +1429,7 @@ html{scrollbar-color:#6b5ba8 #070614;scrollbar-width:thin}
   .marquee{transform:rotate(-2deg) scale(1.05)}
 }
 @media (max-width:620px){
+  .hero-meta{background:linear-gradient(180deg,rgba(5,4,15,0),rgba(5,4,15,.66))}
   .hud{display:none}
   .wrap{width:calc(100% - 32px)}
   .nav{width:calc(100% - 28px);min-height:66px}

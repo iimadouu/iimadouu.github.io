@@ -775,7 +775,7 @@
       var pl = smoothKeys(planetPath, p);
       planetGroup.position.set(
         pl.x * spread * (narrow ? 1.45 : 1),
-        pl.y - (narrow ? 3.2 : 0),
+        pl.y - (narrow ? 3.65 : 0),
         pl.z
       );
       planetGroup.rotation.z = Math.sin(t * 0.12) * 0.02;
