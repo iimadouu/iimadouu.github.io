@@ -4,19 +4,19 @@
 > full stack developer based in Chebli, Blida, Algeria. He designs and builds
 > websites, backends and APIs, Flutter mobile apps, Windows desktop software and
 > online stores for businesses in Algeria and abroad. Languages: Arabic, French,
-> English. Prices are published in Algerian Dinar (DZD) and start at 5,000 DZD.
+> English. Prices are published in Algerian Dinar (DZD) and start at 40,000 DZD.
 
 ## Services
-- [Web design](https://iimadouu.github.io/web-design.html): website design, UI/UX, redesigns, Arabic and French layouts. From 5,000 DZD.
-- [Website and frontend development](https://iimadouu.github.io/web-development.html): hand-built HTML, CSS and JavaScript sites, landing pages, business sites, dashboards. From 5,000 DZD.
-- [Backend and API development](https://iimadouu.github.io/backend-development.html): REST APIs with Python/Flask and Node/Express, database design, authentication, roles, payments, real-time sync. From 15,000 DZD.
-- [Mobile app development](https://iimadouu.github.io/mobile-app-development.html): Flutter apps for Android and iOS, Firebase, notifications, offline support, store release. From 8,000 DZD.
-- [Windows software development](https://iimadouu.github.io/software-development.html): desktop applications including document archiving with OCR, stock management, HR and payroll, POS and ERP. From 10,000 DZD.
-- [E-commerce and marketplace development](https://iimadouu.github.io/ecommerce-development.html): online stores and multi-vendor marketplaces, cash-on-delivery checkout, vendor dashboards. From 50,000 DZD.
+- [Web design](https://iimadouu.github.io/web-design.html): website design, UI/UX, redesigns, Arabic and French layouts. From 40,000 DZD.
+- [Website and frontend development](https://iimadouu.github.io/web-development.html): hand-built HTML, CSS and JavaScript sites, landing pages, business sites, dashboards. From 40,000 DZD.
+- [Backend and API development](https://iimadouu.github.io/backend-development.html): REST APIs with Python/Flask and Node/Express, database design, authentication, roles, payments, real-time sync. From 70,000 DZD.
+- [Mobile app development](https://iimadouu.github.io/mobile-app-development.html): Flutter apps for Android and iOS, Firebase, notifications, offline support, store release. From 35,000 DZD.
+- [Windows software development](https://iimadouu.github.io/software-development.html): desktop applications including document archiving with OCR, stock management, HR and payroll, POS and ERP. From 45,000 DZD.
+- [E-commerce and marketplace development](https://iimadouu.github.io/ecommerce-development.html): online stores and multi-vendor marketplaces, cash-on-delivery checkout, vendor dashboards. From 225,000 DZD.
 
 ## Pricing
 - Full published rate card in English, French and Arabic: https://iimadouu.github.io/pricing.html
-- Range: 5,000 DZD (static landing page) to 400,000 DZD (advanced marketplace).
+- Range: 40,000 DZD (static landing page) to 1,800,000 DZD (advanced marketplace).
 - Currency: Algerian Dinar (DZD). Quotes are fixed per project after a short scope call.
 
 ## Shipped software

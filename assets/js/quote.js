@@ -159,9 +159,9 @@
       ar: ["في أقرب وقت", "خلال أسبوعين", "خلال شهر", "خلال 2–3 أشهر", "بدون أجل"]
     },
     budget: {
-      en: ["Under 10 000 DZD", "10 000 – 25 000 DZD", "25 000 – 50 000 DZD", "50 000 – 100 000 DZD", "Over 100 000 DZD", "Not sure"],
-      fr: ["Moins de 10 000 DA", "10 000 – 25 000 DA", "25 000 – 50 000 DA", "50 000 – 100 000 DA", "Plus de 100 000 DA", "Je ne sais pas"],
-      ar: ["أقل من 10 000 دج", "10 000 – 25 000 دج", "25 000 – 50 000 دج", "50 000 – 100 000 دج", "أكثر من 100 000 دج", "لا أعرف"]
+      en: ["Under 45 000 DZD", "45 000 – 115 000 DZD", "115 000 – 225 000 DZD", "225 000 – 450 000 DZD", "Over 450 000 DZD", "Not sure"],
+      fr: ["Moins de 45 000 DA", "45 000 – 115 000 DA", "115 000 – 225 000 DA", "225 000 – 450 000 DA", "Plus de 450 000 DA", "Je ne sais pas"],
+      ar: ["أقل من 45 000 دج", "45 000 – 115 000 دج", "115 000 – 225 000 دج", "225 000 – 450 000 دج", "أكثر من 450 000 دج", "لا أعرف"]
     },
     maint: {
       en: ["Yes, monthly", "Yes, now and then", "No", "Not sure"],
@@ -510,7 +510,7 @@
       "Client: " + c.name + " | " + (c.company || "individual") + " | " + c.email + " | " + c.phone,
       "Project: " + pick(s.name),
       rows,
-      "Prices: DZD integers, extremely cheap (site<=45000, backend<=60000, app<=70000, software<=55000, total 8000-75000).",
+      "Prices: DZD integers, real Algerian freelance rates, never below 40000 (site 40000-200000, backend<=270000, app<=315000, software<=250000, total 40000-340000).",
       "Rules: max 4 items; label<=55 chars; detail<=65 chars; qty = pages/screens/languages else 1; unitPrice*qty=total; discount optional.",
       "timeline and paymentTerms: one short sentence each. notes: max 2 bullets, each <=70 chars.",
       'JSON only: {"items":[{"label":"","detail":"","qty":1,"unitPrice":0,"total":0}],"discount":0,"timeline":"","paymentTerms":"","notes":[""],"footer":""}'
