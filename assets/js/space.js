@@ -822,13 +822,14 @@
       var narrow = camera.aspect < 1.06;
       var pl = smoothKeys(planetPath, p);
       /* on a phone the copy is centred, so the world sits dead centre too */
+      /* phones: the world owns the top band of the hero, copy sits below */
       planetGroup.position.set(
         narrow ? 0 : pl.x * spread,
-        pl.y - (narrow ? 1.35 : 0),
+        pl.y + (narrow ? 1.5 : 0),
         pl.z
       );
       planetGroup.rotation.z = Math.sin(t * 0.12) * 0.02;
-      planetGroup.scale.setScalar((1 - 0.1 * ease(seg(p, 0.6, 1))) * (narrow ? 0.52 : 1));
+      planetGroup.scale.setScalar((1 - 0.1 * ease(seg(p, 0.6, 1))) * (narrow ? 0.6 : 1));
 
       /* what the visitor has grabbed, on top of the idle drift */
       planetGroup.rotation.y = spin.y;
