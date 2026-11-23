@@ -16,7 +16,7 @@
   --glow:0 30px 60px -34px rgba(124,58,237,.9);
 }
 
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;background:var(--bg,#05040f);min-height:100%}
 
 body{
   background:var(--bg);
@@ -390,4 +390,23 @@ header{
 @media (max-width:620px){
   .price-note{padding:16px;gap:12px;font-size:.86rem}
   .price-note .note-link{width:100%;text-align:center}
+}
+
+/* ---------- phones: let the header breathe instead of overflowing ---------- */
+@media (max-width:700px){
+  header{
+    height:auto;
+    flex-wrap:wrap;
+    padding:10px 14px;
+    row-gap:10px;
+  }
+  .header-right{
+    flex:1 1 100%;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .quote-btn{padding:9px 14px;font-size:.62rem}
+  .back-btn{padding:8px 12px;font-size:.58rem}
+  .lang-btn{padding:6px 10px;font-size:.6rem}
+  .pricing-hero{padding-top:34px}
 }

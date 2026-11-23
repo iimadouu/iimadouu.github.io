@@ -32,8 +32,10 @@
       h = window.innerHeight;
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
-      canvas.style.width = w + "px";
-      canvas.style.height = h + "px";
+      /* size comes from CSS (fixed, inset 0): a pixel height taken from
+         innerHeight leaves a black band when the phone's URL bar hides */
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       var count = smallScreen ? 130 : 260;
