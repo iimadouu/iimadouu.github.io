@@ -1491,9 +1491,10 @@ html{scrollbar-color:#6b5ba8 #070614;scrollbar-width:thin}
 /* ============================================================
    PHONES — centre the hero, nothing wider than the screen
    ============================================================ */
-@media (max-width:780px){
+/* phones, and tablets held upright (the globe is centred in those too) */
+@media (max-width:780px), (max-width:1024px) and (max-aspect-ratio:106/100){
   /* leave the top of the hero to the planet, then the copy */
-  .hero{padding:340px 0 56px;min-height:auto;text-align:center}
+  .hero{padding:var(--globe-band,340px) 0 56px;min-height:auto;text-align:center}
   .hero-grid{gap:0}
   .hero-copy{text-align:center;margin:0 auto;max-width:100%}
   .hero .eyebrow{justify-content:center;text-align:center;flex-wrap:wrap;letter-spacing:.24em;font-size:.62rem}

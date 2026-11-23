@@ -808,6 +808,18 @@
     }
     window.addEventListener("resize", onResize, { passive: true });
 
+    /* how much room the world needs at the top of the hero on phones and
+       upright tablets, so the copy always starts clear of the globe */
+    var lastBand = 0;
+    function syncGlobeBand() {
+      if (window.innerWidth > 1024) return;
+      var band = Math.round(footprint.cy + footprint.r * 1.08);
+      if (band < 240) band = 240;
+      if (Math.abs(band - lastBand) < 3) return;
+      lastBand = band;
+      document.documentElement.style.setProperty("--globe-band", band + "px");
+    }
+
     function apply(p, t) {
       var spread = Math.min(1, camera.aspect / 1.25);
 
@@ -843,6 +855,7 @@
       footprint.cx = (probeA.x * 0.5 + 0.5) * window.innerWidth;
       footprint.cy = (-probeA.y * 0.5 + 0.5) * window.innerHeight;
       footprint.r = Math.abs(probeB.x - probeA.x) * 0.5 * window.innerWidth;
+      syncGlobeBand();
 
       surface.rotation.y = t * 0.045;
       surface.material.uniforms.uTime.value = t;

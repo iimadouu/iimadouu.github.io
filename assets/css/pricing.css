@@ -410,3 +410,16 @@ header{
   .lang-btn{padding:6px 10px;font-size:.6rem}
   .pricing-hero{padding-top:34px}
 }
+
+/* ---------- very small phones (320–400px): two tidy header rows ---------- */
+@media (max-width:400px){
+  /* flatten the controls so the languages ride beside the logo */
+  .header-right{display:contents}
+  header{padding:9px 14px;row-gap:9px}
+  .logo-link{order:0;font-size:.8rem;letter-spacing:.16em}
+  .lang-switcher{order:1;margin-left:auto;padding:3px}
+  .lang-btn{padding:5px 9px;font-size:.58rem}
+  .quote-btn{order:2;padding:8px 12px;font-size:.58rem}
+  .back-btn{order:3;padding:8px 12px;font-size:.58rem}
+  .quote-btn i{display:none}
+}
